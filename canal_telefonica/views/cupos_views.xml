@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <record id='cupos_view_form' model= 'ir.ui.view'>
+        <field name='name'>Formulario de cupos</field>
+        <field name='model'>store.cupos</field>
+        <field name='arch' type='xml'>
+          <form string='form sesiones centro'>
+            <field name='name' widget='selection'/>
+            <field name='cupo_total'/>
+            <field name='cupo_utilizado'/>
+            <field name='cupo_disponible'/>
+        </form>
+    </field>
+</record>
+</odoo>

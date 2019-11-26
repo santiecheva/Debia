@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id = 'tracking_service_crm_lead_form' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service crm_lead form </field>
+	<field name='model'>crm.lead</field>
+	<field name='inherit_id' ref='crm.crm_case_form_view_oppor'/>
+	<field name='arch' type='xml'>
+		<field name='team_id' position='after'>
+			<field name = 'assistant_id' />
+			<field name = 'insurance_id' placeholder='ejm: sura'/>
+			<field name ='id'/>
+
+
+
+
+</odoo>

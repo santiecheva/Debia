@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ <record id='Res_partner_form_view_inherited' model= 'ir.ui.view'>
+      <field name='name'>resPartner form - cupos</field>
+      <field name='model'>res.partner</field>
+      <field name='inherit_id' ref='base.view_partner_form'/>
+      <field name='arch' type='xml'>
+        <notebook>
+            <page string='Cupos'>
+                <field name='cupos_ids' widget='one2many'>
+                    <tree editable='bottom'>
+                        <field name='name'/>
+                        <field name='cupo_total' widget='monetary'/>
+                        <field name='cupo_utilizado'  widget='monetary'/>
+                        <field name='cupo_disponible'  widget='monetary'/>
+                    </tree>
+                </field>
+            </page>
+        </notebook>
+      </field>
+  </record>
+</odoo>

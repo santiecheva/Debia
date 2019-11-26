@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ <record id='cupos_clientes_crm_form_view_inherit' model= 'ir.ui.view'>
+      <field name='name'>crmlead form - responsable de pago</field>
+      <field name='model'>crm.lead</field>
+      <field name='inherit_id' ref='crm.crm_case_form_view_oppor'/>
+      <field name='arch' type='xml'>
+        <field name='team_id' position='after'>
+          <field name = 'responsive_payment'/>
+        </field>
+      </field>
+  </record>
+</odoo>
