@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id = 'tracking_service_cases_form' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service cases form </field>
+	<field name='model'>types.cases</field>
+	<field name='arch' type='xml'>
+		<form string='Casos'>
+			<group> 
+				<field name = 'name'/>
+			</group>
+		</form>
+	</field>
+</record>
+
+<record id = 'tracking_service_cases_tree' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service casses form </field>
+	<field name='model'>types.cases</field>
+	<field name='arch' type='xml'>
+		<tree string='Casos'>
+				<field name = 'name'/>
+		</tree>
+	</field>
+</record>
+</odoo>
+
+
+<!-- ###############ACTIONS####################-->
+<record id = 'action_tipe_cases' model = 'ir.actions.act_window'>
+<field name = 'name'>Casos action </field>
+<field name="res_model">types.cases</field>
+<field name="view_mode">tree,form</field>

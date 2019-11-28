@@ -6,11 +6,18 @@
 	<field name='inherit_id' ref='crm.crm_case_form_view_oppor'/>
 	<field name='arch' type='xml'>
 		<field name='team_id' position='after'>
-			<field name = 'assistant_id' />
-			<field name = 'insurance_id' placeholder='ejm: sura'/>
-			<field name ='id'/>
-
-
-
+			<group> 
+				<field name = 'assistant_id' />
+				<field name = 'insurance_id' placeholder='ejm: sura'/>
+				<field name = 'id'/>
+				</group>
+			<group>
+				<field name = 'placa'/>
+				<field name = 'poliza'/>
+				<field name = 'factura'/>
+			</group>
+		</field>
+	</field>
+</record>
 
 </odoo>

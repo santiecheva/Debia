@@ -16,12 +16,13 @@
     ],
     "website": "https://epistementerprise.com/",
     "data": [
-        'views/res_config_settings_views.xml',
-        'security/ir.model.access.csv',
-        'security/res_users_pass_history.xml',
+        'views/crm_lead_views.xml',
+        'views/cases_views.xml'
+        #'security/ir.model.access.csv',
+        #'security/res_users_pass_history.xml',
     ],
-    "demo": [
-        'demo/res_users.xml',
-    ],
+    #"demo": [
+    #    'demo/res_users.xml',
+    #],
     'aplication': True,
 }
