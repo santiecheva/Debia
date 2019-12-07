@@ -21,7 +21,6 @@
 		</tree>
 	</field>
 </record>
-</odoo>
 
 
 <!-- ###############ACTIONS####################-->
@@ -29,3 +28,5 @@
 <field name = 'name'>Casos action </field>
 <field name="res_model">types.cases</field>
 <field name="view_mode">tree,form</field>
+</record>
+</odoo>

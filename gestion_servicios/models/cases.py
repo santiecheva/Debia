@@ -4,5 +4,5 @@ class TypeCases(models.Model):
 	_name = 'types.cases'
 	_description = 'Tipos de caso'
 
-	name = fields.char(string='Tipo de caso')
+	name = fields.Char(string='Tipo de caso')
 	
