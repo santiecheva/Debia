@@ -6,3 +6,5 @@ class ResPartner(models.Model):
 	entidad = fields.Selection([('ips','IPS'),('eps','Aseguradora')], string = 'Entidad')
 	
 	
+	
+	

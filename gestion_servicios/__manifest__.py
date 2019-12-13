@@ -19,6 +19,7 @@
         'views/crm_lead_views.xml',
         'views/cases_views.xml',
         'views/res_partner_views.xml',
+        'views/presentacion.xml',
         'security/ir.model.access.csv',
         #'security/res_users_pass_history.xml',
     ],

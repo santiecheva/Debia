@@ -9,19 +9,41 @@
 				<field name = 'assistant_id' />
 				<field name = 'insurance_id' placeholder='ejm: sura'/>
 				<field name = 'id'/>
+				<field name = 'direccion'/>
+				<field name = 'heridos'/>
+				<field name = 'placa'/>
+				<field name = 'fecha_ingreso'/>
+				<field name = 'tomador_id'/>
+				<field name = 'reclamante_id'/>
 		</field>
 		<field name = 'date_deadline' position = 'after'>
-				<field name = 'placa'/>
 				<field name = 'poliza'/>
 				<field name = 'factura'/>
-				<field name = 'case'/>
+				<field name = 'valor'/>
+				<field name = 'case_id'/>
+				<field name = 'fecha'/>
+				<field name = 'fecha_egreso'/>
+				<field name = 'lesionado_id'/>
+				<field name = 'estados'/>
+				<field name = 'motivo_estado' attrs="{'invisible': [('estados', '=', 'null')]}"/>
 		</field>
 		<notebook colspan = '4'>
-			<page string = 'Relatos'>
-				<h1>Relato del Lesionado</h1>
+			<page string = 'Relatos/Informes'>
+				<h2 style='color:SlateBlue;'>Relato del Lesionado</h2>
 				<field name = 'relato_lesionado'/>
-				<h1> Relato Furips</h1>
+				<h2 style='color:SlateBlue;'> Relato Furips</h2>
 				<field name = 'relato_furips'/>
+				<h2 style='color:SlateBlue;'>Lesiones</h2>
+				<field name = 'lesion'/>
+				<h2 style='color:SlateBlue;'>Informe Médico</h2>
+				<field name = 'informe_medico'/>
+				<h2 style='color:SlateBlue;'>Tratamiento</h2>
+				<field name = 'atencion'/>
+				<h2 style='color:SlateBlue;'>Traslados</h2>
+				<field name = 'traslado'/>
+			</page>
+			<page string = 'Observaciones'>
+				<field name = 'observaciones'/>
 			</page>
 		</notebook>
 	</field>

@@ -3,12 +3,11 @@
 <record id = 'tracking_service_partner_form' model = 'ir.ui.view'>
 	<field name='name'>Tracking Service partner form </field>
 	<field name='model'>res.partner</field>
+	<field name='inherit_id' ref='base.view_partner_form'/>
 	<field name='arch' type='xml'>
-		<form string='Trackinh service partner form'>
-			<group> 
-				<field name = 'entidad'/>
-			</group>
-		</form>
+		<field name = 'vat' position = 'after'>	
+			<field name = 'entidad' widget = 'radio'/>
+		</field>	
 	</field>
 </record>
 </odoo>

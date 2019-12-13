@@ -1,0 +1,56 @@
+<odoo>
+
+<report id='presentacion_siniestro'
+  string = 'Presentación'
+  model='crm.lead'
+  report_type = 'qweb-pdf'
+  name='gestion_servicios.presentacion_siniestro_template'/>
+
+  <template id='presentacion_siniestro_template'>
+    <t t-call='web.html_container'>
+     <t t-foreach="docs" t-as="o">
+      <t t-call='web.external_layout'>
+        <div class='header'>
+          <title>  Informe validación telefónica </title>
+
+        </div>
+        <div class='page'>
+          <style>
+
+          </style>
+          <caption>Informe validación telefónica</caption>
+          <table>
+            <tr>
+              <th colspan ='2'>Nombre Completo:</th><th>CC (DNI)</th>
+           </tr>
+           <tr>
+            <td colspan = '2'><span t-field = 'o.lesionado_id.name'/></td>
+            <td><span t-field = 'o.lesionado_id.vat' /></td>
+           </tr>
+           <tr>
+            <th>Póliza</th><th>Tipo de Caso</th><th>Placa</th>
+           </tr>
+           <tr>
+            <td><span t-field ='o.poliza'/></td><td><span t-field = 'o.case_id.name'/></td><td><span t-field ='o.placa'/></td>
+           </tr>
+          <tr>
+            <th colspan = '2'>Reclamante</th><th>Factura</th>
+          </tr>
+             
+          <tr>
+            <td colspan = '2'><span t-field = 'o.insurance_id.name'/></td><td><span t-field = 'o.factura'/></td>
+          </tr>
+          </table>
+          <table>
+            <caption>INDICE ACCIDENTALIDAD VEHICULO INVOLUCRADO</caption>
+            De acuerdo con la información registrada en el FURIPS de la <span t-field ='o.insurance_id.name' /> , los hechos ocurrieron el día <span t-field = 'o.fecha'  t-options='{"format": "MM/dd/yyyy"}'/> , siendo aproximadamente las <span t-field = 'o.fecha'  t-options='{"format": "HH/mm/ss"}'/> horas, en la <span t-field = 'o.direccion'/>, momentos en que el señor <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.lesionado_id.vat' /> se movilizaba en calidad de <span t-field ='o.calidad'/> del <span t-field ='o.vehiculo'/> de
+            placas  <span t-field ='o.placa'/> , amparada bajo la póliza SOAT No.<span t-field ='o.caso'/> expedida por seguros SURAMERICANA, resulta herido cuando <span t-field ='o.relato_furips'/> 
+          </table> 
+          
+        </div>
+      </t>
+    </t>
+  </t>
+ </template>
+
+</odoo>
