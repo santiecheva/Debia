@@ -5,42 +5,103 @@
 	<field name='model'>crm.lead</field>
 	<field name='inherit_id' ref='crm.crm_case_form_view_oppor'/>
 	<field name='arch' type='xml'>
-		<field name='phone' position='after'>
-				<field name = 'assistant_id' />
-				<field name = 'insurance_id' placeholder='ejm: sura'/>
-				<field name = 'id'/>
-				<field name = 'direccion'/>
-				<field name = 'heridos'/>
-				<field name = 'placa'/>
-				<field name = 'fecha_ingreso'/>
-				<field name = 'tomador_id'/>
-				<field name = 'reclamante_id'/>
+		<page name="lead" position="attributes">
+    		<attribute name="invisible">1</attribute>
+    	</page>		
+		<field name="planned_revenue" position="attributes">
+    		<attribute name="invisible">1</attribute>
+		</field>
+		<field name="probability" position="attributes">
+    		<attribute name="invisible">1</attribute>
+		</field>
+		<field name="partner_id" position="attributes">
+    		<attribute name="string">Aseguradora</attribute>
+    		<attribute name="domain">[('entidad','=','eps'),('customer','=',True)]</attribute>
+		</field>		
+		<field name = 'phone' position = 'after'>
+			<field name = 'lesionado_id'/>
+			<field name = 'propietario_id' /> 			
+			<field name = 'case_id'/> 
+			<field name = 'cedula_lesionado'/>
+			<field name = 'phone_lesionado' widget = 'phone'/>
+
+		</field>
+		<field name='team_id' position='before'>
+			<field name = 'assistant_id' />
+			<!--<field name = 'id'/>-->
 		</field>
 		<field name = 'date_deadline' position = 'after'>
-				<field name = 'poliza'/>
-				<field name = 'factura'/>
-				<field name = 'valor'/>
-				<field name = 'case_id'/>
-				<field name = 'fecha'/>
-				<field name = 'fecha_egreso'/>
-				<field name = 'lesionado_id'/>
-				<field name = 'estados'/>
-				<field name = 'motivo_estado' attrs="{'invisible': [('estados', '=', 'null')]}"/>
+			<field name = 'factura'/>
+			<field name = 'valor'/>
+			<field name = 'estados_id'/>
+			<field name = 'motivo_estado' attrs="{'invisible': [('estados_id', '=', False)]}"/>
+			<field name = 'calidad'/>
+			<field name = 'sexo'/>
 		</field>
 		<notebook colspan = '4'>
-			<page string = 'Relatos/Informes'>
-				<h2 style='color:SlateBlue;'>Relato del Lesionado</h2>
-				<field name = 'relato_lesionado'/>
-				<h2 style='color:SlateBlue;'> Relato Furips</h2>
+			<page string = 'Accidente'>
+				<group>	
+					<group>
+						<field name = 'fecha_ips'/>
+						<field name = 'direccion_ips'/>
+					</group>
+					<group>
+						<field name = 'heridos' placeholder = 'ejm: uno, dos, tres...'/>
+					</group>
+				</group>	
+
+				<h2 style='color:SlateBlue;'> Descripción del Evento FURIPS</h2>
 				<field name = 'relato_furips'/>
-				<h2 style='color:SlateBlue;'>Lesiones</h2>
-				<field name = 'lesion'/>
+			</page>
+			<page string = 'Información Vehículo'>
+				<group>	
+					<group>
+						<field name = 'placa' placeholder = 'Placa del vehículo'/>
+						<field name = 'poliza' placeholder = 'Número de póliza del vehículo'/>
+						<field name = 'vigencia_poliza_desde' />
+					</group>
+					<group>
+						<field name = 'vigencia_poliza_hasta'/>
+						<field name = 'vehiculo_id'/>
+						<field name = 'propietario_id'/>
+					</group>
+				</group>
+			</page>
+
+			<page string = 'Información IPS'>
+				<group>
+					<group>
+						<field name = 'insurance_id'/>
+						<field name = 'fecha_ingreso'/>
+					</group>
+					<group>
+						<field name = 'fecha_egreso'/>
+					</group>
+				</group>
 				<h2 style='color:SlateBlue;'>Informe Médico</h2>
 				<field name = 'informe_medico'/>
+			</page>
+			<page string = 'Información Entrevista'>
+				<group>
+					<group>	
+						<field name = 'fecha_contactado'/>
+						<field name = 'direccion_contactado'/>
+					</group>
+					<group>
+						<field name = 'contactado_id' />
+						<field name = 'traslado_id'/>						
+					</group>
+				</group>
+				<h2 style='color:SlateBlue;'>Descripción del Evento Según Lesionado</h2>
+				<field name = 'relato_lesionado'/>
+
+				<h2 style='color:SlateBlue;'>Lesiones</h2>
+				<field name = 'lesion'/>
+
 				<h2 style='color:SlateBlue;'>Tratamiento</h2>
 				<field name = 'atencion'/>
-				<h2 style='color:SlateBlue;'>Traslados</h2>
-				<field name = 'traslado'/>
+
+
 			</page>
 			<page string = 'Observaciones'>
 				<field name = 'observaciones'/>

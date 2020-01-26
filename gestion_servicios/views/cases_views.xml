@@ -5,7 +5,8 @@
 	<field name='model'>types.cases</field>
 	<field name='arch' type='xml'>
 		<form string='Casos'>
-			<group> 
+			<group>
+				<field name = 'insurance_id'/> 
 				<field name = 'name'/>
 			</group>
 		</form>
@@ -17,6 +18,7 @@
 	<field name='model'>types.cases</field>
 	<field name='arch' type='xml'>
 		<tree string='Casos'>
+				<field name = 'insurance_id'/>
 				<field name = 'name'/>
 		</tree>
 	</field>
