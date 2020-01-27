@@ -74,23 +74,3 @@ class CrmLead(models.Model):
 		if type(self.heridos) == int:
 			raise exceptions.ValidationError('Por Favor escriba la cantidad de heridos en letras ejm: dos.')		
 
-	@api.onchange('lesionado_id')		
-	def _onchange_phone_mobile(self):
-		if self.lesionado_id.phone:
-			self.phone_lesionado = self.lesionado_id.phone
-		else:
-			self.phone_lesionado = self.lesionado_id.mobile
-
-	@api.onchange('lesionado_id')
-	def _onchange_vat_lesionado(self):
-		if self.lesionado_id.vat:
-			self.cedula_lesionado = self.lesionado_id.vat
-
-	@api.onchange('phone_lesionado')
-	def _onchange_phone_partner_lesionado(self):
-		if not self.lesionado_id.phone and not self.lesionado_id.mobile:
-			self.lesionado_id.mobile = self.phone_lesionado
-	
-	@api.multi			
-	def _ips_tag(self):
-		return self.insurance_id.write({'entidad':'ips'})
