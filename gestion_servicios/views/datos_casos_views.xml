@@ -90,53 +90,5 @@
 	</field>
 </record>
 
-
-
-<!-- ###############ACTIONS####################-->
-<record id = 'action_tipe_cases' model = 'ir.actions.act_window'>
-<field name = 'name'>Casos action </field>
-<field name='type'>ir.actions.act_window</field>
-<field name="res_model">types.cases</field>
-<field name="view_mode">tree,form</field>
-</record>
-
-<record id = 'action_maestro_resultados' model = 'ir.actions.act_window'>
-<field name = 'name'>Resultados action</field>
-<field name='type'>ir.actions.act_window</field>
-<field name="res_model">maestro.resultados</field>
-<field name="view_mode">tree,form</field>
-</record>
-
-<record id = 'action_tipo_vehiculo' model = 'ir.actions.act_window'>
-<field name = 'name'>Vehículos action</field>
-<field name='type'>ir.actions.act_window</field>
-<field name="res_model">tipo.vehiculo</field>
-<field name="view_mode">tree,form</field>
-</record>
-
-<record id = 'action_maestro_traslados' model = 'ir.actions.act_window'>
-<field name = 'name'>Traslados action</field>
-<field name='type'>ir.actions.act_window</field>
-<field name="res_model">maestro.traslados</field>
-<field name="view_mode">tree,form</field>
-</record>
-
-<!-- ###############MENUS####################-->
-
-<menuitem id='datos_cases_menu_root' name='Datos de casos' sequence='2'/>
-
-<menuitem id='tipos_casos_menu' name='Tipos de casos' sequence='2' parent='datos_cases_menu_root'/>
-<menuitem id='tipos_casos_submenu' name='Tipos de casos' sequence='3' parent='tipos_casos_menu' action = 'action_tipe_cases'/>
-
-<menuitem id='maestro_resultados_menu' name='Resultados' sequence='2' parent='datos_cases_menu_root'/>
-<menuitem id='maestro_resultados_submenu' name='Resultados' sequence='3' parent='maestro_resultados_menu' action = 'action_maestro_resultados'/>
-
-<menuitem id='maestro_traslados_menu' name='Traslados' sequence='2' parent='datos_cases_menu_root' />
-<menuitem id='maestro_traslados_submenu' name='Traslados' sequence='3' parent='maestro_traslados_menu' action='action_maestro_traslados'/>
-
-<menuitem id='tipo_vehiculo_menu' name='Vehículos' sequence='2' parent='datos_cases_menu_root'/>
-<menuitem id='tipo_vehiculo_submenu' name='Vehículos' sequence='3' parent='tipo_vehiculo_menu' action = 'action_tipo_vehiculo'/>
-
-
-
 </odoo>
+

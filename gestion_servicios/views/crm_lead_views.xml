@@ -20,21 +20,27 @@
 		</field>
 		<field name="partner_address_phone" position="attributes">
     		<attribute name="invisible">1</attribute>
-		</field>		
+		</field>
+		<field name="partner_address_email" position="attributes">
+    		<attribute name="invisible">1</attribute>
+		</field>				
+		<field name="phone" position="attributes">
+    		<attribute name="invisible">1</attribute>
+		</field>					
 		<field name="email_from" position="attributes">
     		<attribute name="invisible">1</attribute>
 		</field>				
 		<field name = 'phone' position = 'after'>
 			<field name = 'lesionado_id'/>
 			<field name = 'propietario_id' /> 			
-			<field name = 'case_id'/> 
+			<field name = 'case_id'/>
+			<field name = 'tipo_documento'/>  
 			<field name = 'cedula_lesionado'/>
 			<field name = 'phone_lesionado' widget = 'phone'/>
 
 		</field>
 		<field name='team_id' position='before'>
 			<field name = 'assistant_id' />
-			<!--<field name = 'id'/>-->
 		</field>
 		<field name = 'date_deadline' position = 'after'>
 			<field name = 'factura'/>
@@ -125,9 +131,15 @@
 	<field name='inherit_id' ref='crm.crm_case_kanban_view_leads'/>
 	<field name='arch' type='xml'>
 		<field name = 'tag_ids' position = 'after'>
-			<field name= 'placa'/>
-			<field name= 'lesionado_id'/>
-			<field name = 'cedula_lesionado'/>
+			<group>
+				<div>
+					<field name= 'placa'/>
+				</div>
+				<div>
+					<field name= 'lesionado_id'/>
+					<field name = 'cedula_lesionado'/>
+				</div>
+			</group>
 		</field>
 	</field>
 </record>		

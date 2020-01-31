@@ -27,6 +27,9 @@ class CrmLead(models.Model):
 
 # Datos del lesionado
 	lesionado_id = fields.Many2one('res.partner', string='Lesionado', domain = "[('entidad','!=','ips'),('entidad','!=','eps')]" )	
+	tipo_documento = fields.Selection([('cedula','Cédula'),('ti','Tarjeta de Identidad'),
+										('cc','Registro Civil'),('as','Adulto sin identificación'),
+											('ms','Menor sin identificación'),('ce','Cédula de extrangería'),('nn','No identificado')], string = 'Tipo de Documento')		
 	cedula_lesionado = fields.Char(string = 'Cedula del lesionado')
 	phone_lesionado = fields.Char(string = 'Telefono del lesionado')	
 #   Campos del fórmularios de datos según la IPS
