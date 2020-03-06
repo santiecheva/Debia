@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id = 'files_team_form' model = 'ir.ui.view'>
+	<field name='name'>Formulario de Archivos por canal de venta </field>
+	<field name='model'>files.team</field>
+	<field name='arch' type='xml'>
+		<form string='Archivo por canal'>
+			<group>
+				<group>
+					<field name = 'name'/> 
+				</group>
+				<group>	
+					<field name = 'team_id'/>
+				</group>
+			</group>
+		</form>
+	</field>
+</record>
+
+<record id = 'files_team_tree' model = 'ir.ui.view'>
+	<field name='name'>Tree de Archivos por canal de venta </field>
+	<field name='model'>files.team</field>
+	<field name='arch' type='xml'>
+		<tree string='Archivo por canal'>
+				<field name = 'name'/> 
+				<field name = 'team_id'/>
+		</tree>
+	</field>
+</record>
+
+<record id = 'res_documents_form' model = 'ir.ui.view'>
+	<field name='name'>Formulario de administracion de adjuntos </field>
+	<field name='model'>res.documents</field>
+	<field name='arch' type='xml'>
+		<form string='Documento'>
+			<group>
+				<group>
+					<field name = 'name'/> 
+					<field name = 'attachment_id'/>
+					<field name = 'renovacion'/>
+				</group>
+				<group>	
+					<field name = 'res_id'/>
+					<field name = 'res_model'/>
+				</group>
+			</group>
+		</form>
+	</field>
+</record>
+
+<record id = 'res_documents_tree' model = 'ir.ui.view'>
+	<field name='name'>Tree de administracion de adjuntos </field>
+	<field name='model'>res.documents</field>
+	<field name='arch' type='xml'>
+		<tree string='Documentos'>
+				<field name = 'name'/> 
+				<field name = 'attachment_id'/>
+				<field name = 'renovacion'/>
+				<field name = 'res_id'/>
+				<field name = 'res_model'/>
+		</tree>
+	</field>
+</record>
+
+
+<!-- ACTIONS --> 
+
+<record id = 'action_res_documents' model = 'ir.actions.act_window'>
+<field name = 'name'>administrador de documentos action </field>
+<field name='type'>ir.actions.act_window</field>
+<field name="res_model">res.documents</field>
+<field name="view_mode">tree,form</field>
+</record>
+
+<record id = 'action_files_team' model = 'ir.actions.act_window'>
+<field name = 'name'>administrador de documentos por canal </field>
+<field name='type'>ir.actions.act_window</field>
+<field name="res_model">files.team</field>
+<field name="view_mode">tree,form</field>
+</record>
+
+</odoo>

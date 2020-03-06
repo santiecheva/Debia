@@ -3,7 +3,7 @@
 <report id='presentacion_siniestro'
   string = 'Presentación'
   model='crm.lead'
-  report_type = 'qweb-html'
+  report_type = 'qweb-pdf'
   name='gestion_servicios.presentacion_siniestro_template'/>
 
   <template id='presentacion_siniestro_template'>
@@ -27,7 +27,7 @@
 
            <tr>
            <th class = "table-active">DESTINATARIOS</th>
-           <td>SEGUROS SURA - AREA INDEMNIZACIÓN SOAT</td>          
+           <td><span t-field = 'o.partner_id.name'/> - AREA INDEMNIZACIÓN SOAT</td>          
            </tr>
          </table>
 
@@ -46,7 +46,7 @@
            </tr>
            <tr>
             <td colspan = '2'><span t-field = 'o.lesionado_id.name'/></td>
-            <td><span t-field = 'o.lesionado_id.vat' /></td>
+            <td><span t-field = 'o.cedula_lesionado' /></td>
            </tr>
            <tr class = "table-active">
             <th>Póliza</th><th>Tipo de Caso</th><th>Placa</th>
@@ -72,7 +72,7 @@
         </tr>
         <tr>
         <td> 
-            <b>Buscamos en la página del RUNT el índice de accidentalidad del vehículo involucrado y el vehículo de placas <span t-field = 'o.placa' /> así. </b>
+            <b>Buscamos en la página del RUNT el índice de accidentalidad del vehículo involucrado y el vehículo de placas <span t-field = 'o.placa' /> como se mostrará en los anexos. </b>
           </td>
           </tr>
           </table>
@@ -84,8 +84,8 @@
         </tr>
         <tr>
           <td>            
-            De acuerdo con la información registrada en el FURIPS de la <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips'  t-options='{"format": "MM/dd/yyyy"}'/> , siendo aproximadamente las <span t-field = 'o.fecha_ips'  t-options='{"format": "HH:mm"}'/> horas, en la <span t-field = 'o.direccion_ips'/>, momentos en que el señor <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.lesionado_id.vat' /> se movilizaba en calidad de <span t-field ='o.calidad'/> del <span t-field ='o.vehiculo_id.name'/> de
-            placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.caso'/> expedida por seguros <span t-field = 'o.partner_id.name'/>, resulta herido cuando <span t-field ='o.relato_furips'/>
+            De acuerdo con la información registrada en el FURIPS de la <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips'  t-options='{"format": "MM/dd/yyyy"}'/> , siendo aproximadamente las <span t-field = 'o.fecha_ips'  t-options='{"format": "HH:mm"}'/> horas, en la <span t-field = 'o.direccion_ips'/>, momentos en que el señor <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.cedula_lesionado' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo <span t-field ='o.vehiculo_id.name'/> de
+            placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por seguros <span t-field = 'o.partner_id.name'/>, resulta herido cuando <span t-field ='o.relato_furips'/>
             </td>
             </tr> 
 
@@ -98,9 +98,10 @@
       </tr>
       <tr>
           <td>     
-                 Conforme a la información que nos brinda el señor <span t-field = 'o.contactado_id.name' />, en el número telefónico <span t-field = 'o.telefono_contactado'/> el accidente ocurrió el día <span t-field = 'o.fecha_contactado' t-options='{"format": "MM/dd/yyyy"}' /> siendo aproximadamente  <span t-field = 'o.fecha_contactado'  t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_contactado'/>, momento en que transitaba en vía pública en calidad de <b><span t-field = 'o.calidad'/></b> del <span t-field ='o.vehiculo_id.name'/> de placas <span t-field ='o.placa'/> amparada bajo la póliza SOAT No.<span t-field ='o.caso'/>, expedida por seguros  <span t-field = 'o.partner_id.name'/>, resulta herido cuando <span t-field = 'o.fecha_ingreso' t-options='{"format": "MM/dd/yyyy"}'/> a las <span t-field = 'o.fecha_ingreso' t-options='{"format": "HH:mm"}'/> horas a la  <span t-field = 'o.insurance_id.name'/> y egresa el <span t-field = 'o.fecha_egreso' t-options='{"format": "MM/dd/yyyy"}'/> a las <span t-field = 'o.fecha_egreso' t-options='{"format": "HH:mm"}'/>.
-                Resulta <span t-field = 'o.heridos' />
-            </td>
+               Conforme a la información que nos brinda el señor <span t-field = 'o.contactado_id.name' />, en el número telefónico <span t-field = 'o.telefono_contactado'/> el accidente ocurrió el día <span t-field = 'o.fecha_contactado' t-options='{"format": "MM/dd/yyyy"}' /> siendo aproximadamente  <span t-field = 'o.fecha_contactado'  t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_contactado'/>, momento en que transitaba en vía pública en calidad de <span t-field = 'o.calidad'/>, donde se involucra el vehículo   <span t-field ='o.vehiculo_id.name'/> de placas <span t-field ='o.placa'/> amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/>, expedida por seguros <span t-field = 'o.partner_id.name'/>, resulta herido cuando <span t-field = 'o.relato_lesionado'/> 
+               El lesionado ingresa el día <span t-field = 'o.fecha_ingreso' t-options='{"format": "MM/dd/yyyy"}'/> a la clínica  <span t-field = 'o.insurance_id.name'/> y egresa el <span t-field = 'o.fecha_egreso' t-options='{"format": "MM/dd/yyyy"}'/>.
+               Resulta <span t-field = 'o.heridos'/> personas heridas.
+          </td>
         </tr>
           </table>
           <table class = 'table'>
@@ -111,7 +112,7 @@
       </tr>
       <tr>
           <td>  
-          El afectado fue trasladado por <span t-field = 'o.traslado_id.name' />, Hasta la <span t-field = 'o.insurance_id.name' />.
+          El afectado fue trasladado por <span t-field = 'o.traslado_id.name' />, hasta la <span t-field = 'o.insurance_id.name' />.
             </td>
         </tr>
           </table>
@@ -123,7 +124,7 @@
       </tr>
       <tr>
           <td>
-            Según la información relatada sufre lesiones en  <span t-field = 'o.lesion' />. En el informe médico encontramos que el diagnóstico de ingreso fue <span t-field = 'o.informe_medico' />.
+            Según la información relatada sufre lesiones en  <span t-field = 'o.lesion'/>. En el informe médico encontramos que el diagnóstico de ingreso fue <span t-field = 'o.informe_medico' />.
           </td>
         </tr>
           </table>   
@@ -147,9 +148,9 @@
     </tr>
     <tr>
       <td>  
-          Acorde a la información, el señor <span t-field = 'o.propietario_id.name' />, es el propietario del, <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' />, revisada la base de datos RUNT está registrada así:
-          </td>
-      </tr>
+          Acorde a la información, el señor <span t-field = 'o.propietario_id.name' />, es el propietario del, <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' />, revisada la base de datos RUNT está registrada como se mostrará en el anexo.
+      </td>
+    </tr>
           </table>
           <table class = 'table'>
                      <tr>
@@ -159,7 +160,7 @@
     </tr>
     <tr>
       <td>  
-          Según el cotejamiento de la información dada por el entrevistado y los gastos que la <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b><span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />, encontramos que la información coincide y el centro clínico realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa. Así mismo, se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "MM/dd/yyyy"}'/>, donde resultó lesionado el señor <span t-field = 'o.lesionado_id.name' /> que involucra el <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza <b>SOAT No. <span t-field = 'o.poliza' /> expedida por seguros <span t-field = 'o.partner_id.name' /></b>.
+          Según el cotejamiento de la información dada por el entrevistado y los gastos que la <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />, encontramos que la información coincide y el centro clínico realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa. Así mismo, se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "MM/dd/yyyy"}'/>, donde resultó lesionado el señor <span t-field = 'o.lesionado_id.name' /> que involucra el <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por seguros <span t-field = 'o.partner_id.name' />.
           </td>
       </tr>
       </table>
@@ -190,11 +191,11 @@
           </table>
           </div>
 
-        <div class='footer'>
+        <div class='footer text-muted'>
         <p> 
-          <b>
+          
           LA INFORMACION CONTENIDA EN ESTE DOCUMENTO DEBE SER TRATADA DE MANERA CONFIDENCIAL  
-          </b>
+    
         </p>
         <p>
           Su acceso y suministro a terceros debe ser autorizada por la dirección de SOAT

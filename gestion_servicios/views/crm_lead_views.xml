@@ -104,7 +104,8 @@
 					</group>
 					<group>
 						<field name = 'contactado_id' />
-						<field name = 'traslado_id'/>						
+						<field name = 'traslado_id'/>
+						<field name = 'telefono_contactado' widget = 'phone'/>
 					</group>
 				</group>
 				<h2 style='color:SlateBlue;'>Descripción del Evento Según Lesionado</h2>
@@ -121,6 +122,9 @@
 			<page string = 'Observaciones'>
 				<field name = 'observaciones'/>
 			</page>
+<!-- 			<page string = 'Analisis final'>
+				<field name = 'analisis_final'/>
+			</page> -->
 		</notebook>
 	</field>
 </record>
