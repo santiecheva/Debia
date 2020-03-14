@@ -73,8 +73,20 @@
         <tr>
         <td> 
             <b>Buscamos en la página del RUNT el índice de accidentalidad del vehículo involucrado y el vehículo de placas <span t-field = 'o.placa' /> como se mostrará en los anexos. </b>
-          </td>
-          </tr>
+        </td>
+        </tr>
+        <!--<div id="picture">
+          <img t-attf-src="data:image/jpg;base64,{{ crm.lead.binary_field_name }}" 
+          style="width:95px; height:95px;margin-left:55px;"/>
+        </div>
+        <div>
+        <t t-foreach = 'o.attach_ids' t-as = 'attach'>
+          <t t-esc="attach.attachment_id.db_datas" t-field-options="{'widget': 'image'}"/>
+        </t>
+        </div>-->
+          <div>
+          <span t-field='o.prueba_bin' t-field-options="{'widget': 'image'}"/>
+          </div>
           </table>
           <table class = 'table'>
              <tr>

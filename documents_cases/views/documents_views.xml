@@ -37,7 +37,7 @@
 			<group>
 				<group>
 					<field name = 'name'/> 
-					<field name = 'attachment_id'/>
+					<field name = 'image_bin' />
 					<field name = 'renovacion'/>
 				</group>
 				<group>	
@@ -55,7 +55,7 @@
 	<field name='arch' type='xml'>
 		<tree string='Documentos'>
 				<field name = 'name'/> 
-				<field name = 'attachment_id'/>
+				<field name = 'image_bin'/>
 				<field name = 'renovacion'/>
 				<field name = 'res_id'/>
 				<field name = 'res_model'/>
@@ -79,5 +79,7 @@
 <field name="res_model">files.team</field>
 <field name="view_mode">tree,form</field>
 </record>
+
+
 
 </odoo>

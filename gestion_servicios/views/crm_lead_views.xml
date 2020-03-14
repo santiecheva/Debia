@@ -18,12 +18,12 @@
     		<attribute name="string">Aseguradora</attribute>
     		<attribute name="domain">[('entidad','=','eps'),('customer','=',True)]</attribute>
 		</field>
-		<field name="partner_address_phone" position="attributes">
+		<!--<field name="partner_address_phone" position="attributes">
     		<attribute name="invisible">1</attribute>
 		</field>
 		<field name="partner_address_email" position="attributes">
     		<attribute name="invisible">1</attribute>
-		</field>				
+		</field>-->			
 		<field name="phone" position="attributes">
     		<attribute name="invisible">1</attribute>
 		</field>					
@@ -41,6 +41,7 @@
 		</field>
 		<field name='team_id' position='before'>
 			<field name = 'assistant_id' />
+			<field name = 'prueba_bin' />
 		</field>
 		<field name = 'date_deadline' position = 'after'>
 			<field name = 'factura'/>
