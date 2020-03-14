@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id = 'tracking_service_traslados_form' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service traslados form </field>
+	<field name='model'>maestro.traslados</field>
+	<field name='arch' type='xml'>
+		<form string='Traslado'>
+			<group>
+				<field name = 'name'/>
+			</group>
+		</form>
+	</field>
+</record>
+
+<record id = 'tracking_service_traslados_tree' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service traslados tree </field>
+	<field name='model'>maestro.traslados</field>
+	<field name='arch' type='xml'>
+		<tree string='traslados'>
+				<field name = 'name'/>
+		</tree>
+	</field>
+</record>
+
+
+<!-- ###############ACTIONS####################-->
+<record id = 'action_maestro_traslados' model = 'ir.actions.act_window'>
+<field name = 'name'>Traslados action</field>
+<field name='type'>ir.actions.act_window</field>
+<field name="res_model">maestro.traslados</field>
+<field name="view_mode">tree,form</field>
+</record>
+</odoo>

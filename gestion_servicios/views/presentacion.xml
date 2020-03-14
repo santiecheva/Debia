@@ -73,19 +73,13 @@
         <tr>
         <td> 
             <b>Buscamos en la página del RUNT el índice de accidentalidad del vehículo involucrado y el vehículo de placas <span t-field = 'o.placa' /> como se mostrará en los anexos. </b>
-        </td>
-        </tr>
-        <!--<div id="picture">
-          <img t-attf-src="data:image/jpg;base64,{{ crm.lead.binary_field_name }}" 
-          style="width:95px; height:95px;margin-left:55px;"/>
-        </div>
-        <div>
-        <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-          <t t-esc="attach.attachment_id.db_datas" t-field-options="{'widget': 'image'}"/>
-        </t>
-        </div>-->
-          <div>
-          <span t-field='o.prueba_bin' t-field-options="{'widget': 'image'}"/>
+          </td>
+          </tr>
+          <div class="img-fluid" alt="Responsive image">
+            <t t-foreach = 'o.attach_ids' t-as = 'attach'>
+              <!--<t t-esc = 'attach.image_bin' t-field-options="{'widget': 'image'}" />-->
+              <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
+            </t>
           </div>
           </table>
           <table class = 'table'>
@@ -98,10 +92,10 @@
           <td>            
             De acuerdo con la información registrada en el FURIPS de la <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips'  t-options='{"format": "MM/dd/yyyy"}'/> , siendo aproximadamente las <span t-field = 'o.fecha_ips'  t-options='{"format": "HH:mm"}'/> horas, en la <span t-field = 'o.direccion_ips'/>, momentos en que el señor <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.cedula_lesionado' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo <span t-field ='o.vehiculo_id.name'/> de
             placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por seguros <span t-field = 'o.partner_id.name'/>, resulta herido cuando <span t-field ='o.relato_furips'/>
-            </td>
-            </tr> 
-
-          </table> 
+          </td>
+        </tr> 
+        </table> 
+        
           <table class = 'table'>
           <tr>
         <th colspan="3" class = "table-active">

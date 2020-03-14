@@ -65,10 +65,10 @@ class CrmLead(models.Model):
 	propietario_id = fields.Many2one('res.partner', string = 'Propietario', domain = "[('entidad','!=','ips'),('entidad','!=','eps')]")
 	sexo = fields.Selection([('hombre','Masculino'),('mujer','Femenino')], string = 'Género')
 
-	analisis_final = fields.Html(string = 'Analisis Final')
+	# analisis_final = fields.Html(string = 'Analisis Final',
 	# 	default = _default_analisis_final)
 
-	prueba_bin = fields.Binary(string = 'Prueba Adjunto')
+	
 
 	@api.onchange('phone_lesionado')
 	def _onchange_tel_lesionado(self):
