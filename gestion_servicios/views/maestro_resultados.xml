@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id = 'tracking_service_maestro_resultados_form' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service Resultados form </field>
+	<field name='model'>maestro.resultados</field>
+	<field name='arch' type='xml'>
+		<form string='Resultado'>
+			<group>
+				<field name = 'name'/>
+			</group>
+		</form>
+	</field>
+</record>
+
+<record id = 'tracking_service_maestro_resultados_tree' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service Resultados tree </field>
+	<field name='model'>maestro.resultados</field>
+	<field name='arch' type='xml'>
+		<tree string='vehículos'>
+				<field name = 'name'/>
+		</tree>
+	</field>
+</record>
+
+
+<!-- ###############ACTIONS####################-->
+<record id = 'action_maestro_resultados' model = 'ir.actions.act_window'>
+<field name = 'name'>Resultados action</field>
+<field name='type'>ir.actions.act_window</field>
+<field name="res_model">maestro.resultados</field>
+<field name="view_mode">tree,form</field>
+</record>
+</odoo>
+

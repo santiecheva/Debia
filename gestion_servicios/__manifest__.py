@@ -20,6 +20,8 @@
         'views/cases_views.xml',
         'views/res_partner_views.xml',
         'views/presentacion.xml',
+        'views/entrevista_views.xml',
+
         #'security/ir.model.access.csv',
         #'security/gestion_servicios.xml',
     ],
