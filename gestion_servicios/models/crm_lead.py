@@ -29,7 +29,7 @@ class CrmLead(models.Model):
 
 # Datos del lesionado
 
-	lesionado_id = fields.Many2one('res.partner', string='Lesionado', domain = "[('entidad','!=','ips'),('entidad','!=','eps')]" )	
+	lesionado_id = fields.Many2one('res.partner', string='Afectado', domain = "[('entidad','=',False)]" )	
 	tipo_documento = fields.Selection([('cedula','Cédula'),('ti','Tarjeta de Identidad'),
 										('cc','Registro Civil'),('as','Adulto sin identificación'),
 											('ms','Menor sin identificación'),('ce','Cédula de extrangería'),('nn','No identificado')], string = 'Tipo de Documento')		
@@ -37,13 +37,19 @@ class CrmLead(models.Model):
 	phone_lesionado = fields.Char(string = 'Telefono del lesionado')	
 
 #   Campos del fórmularios de datos según la IPS
+	cedula_lesionado_related = fields.Char(string='Cédula del lesionado',
+                               store=True,
+                               related='lesionado_id.vat')
+	phone_lesionado_related = fields.Char(string='Telefono del lesionado',
+                               store=True,
+                               related='lesionado_id.mobile')	
 
 	fecha_ips = fields.Datetime(string = 'Fecha Accidente FURIPS')
 	direccion_ips = fields.Char(string = 'Dirección Accidente FURIPS')
 
 	contactado_id = fields.Many2one('res.partner', string='Contactado',  
 		help = 'Ingrese el contacto que fue contactado por defecto este será el mismo lesionado, cámbielo si no es así.',
-		domain = "['&',('entidad','!=','ips'),('entidad','!=','eps')]")
+		domain = "[('entidad','=',False)]")
 	fecha_contactado = fields.Datetime(string = 'Fecha Accidente según Contactado')
 	direccion_contactado = fields.Char(string = 'Dirección Accidente según Contactado')
 
@@ -62,13 +68,26 @@ class CrmLead(models.Model):
 	vigencia_poliza_desde = fields.Date(string = 'Vigencia Desde')
 	vigencia_poliza_hasta = fields.Date(string = 'Vigencia Hasta')
 	fecha_documento = fields.Datetime(string ='Fecha Documento', default = fields.Datetime.now)
-	propietario_id = fields.Many2one('res.partner', string = 'Propietario', domain = "[('entidad','!=','ips'),('entidad','!=','eps')]")
+	propietario_id = fields.Many2one('res.partner', string = 'Propietario', domain = "[('entidad','=',False)]")
 	sexo = fields.Selection([('hombre','Masculino'),('mujer','Femenino')], string = 'Género')
 
+	###### MORTALES #################
+	beneficiario_id = fields.Many2one('res.partner', string = 'Beneficiario', domain = "[('entidad','=',False)]")
+	exequias = fields.Text(string = 'Exequias')
+	nunc = fields.Char(string = 'NUNC')
+	fiscalia = fields.Char(string = 'Fiscalía')
+	registro_defuncion = fields.Char(string = 'Registro Defunción')
+	fecha_inscripcion = fields.Date(string = 'Fecha de Inscripción')
 	# analisis_final = fields.Html(string = 'Analisis Final',
 	# 	default = _default_analisis_final)
 
 	
+	@api.multi
+	def write_phone(self):
+		partner_ids = self.env['res.partner'].search([('id','=',self.lesionado_id.id)])
+		for partner in partner_ids:
+			partner.write({'mobile':self.phone_lesionado})
+
 
 	@api.onchange('phone_lesionado')
 	def _onchange_tel_lesionado(self):

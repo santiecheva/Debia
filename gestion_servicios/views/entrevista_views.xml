@@ -6,21 +6,17 @@
 	<field name='arch' type='xml'>
 		<form string='Entrevista'>
 			<group>
-				<div>
-					<group>
-						<field name = 'name'/> 
-						<field name = 'documento'/>
-					</group>
-					<group>
-						<field name = 'relacion'/>
-					</group>	
-				</div>
-				<div>
-					<group>
-						<field name = 'relato'/>
-					</group>
-				</div>
+				<group>
+					<field name = 'name'/> 
+					<field name = 'documento'/>
+				</group>
+				<group>
+					<field name = 'relacion'/>
+				</group>
 			</group>
+
+			<field name = 'relato'/>
+
 		</form>
 	</field>
 </record>
@@ -44,7 +40,7 @@
 	<field name='inherit_id' ref='crm.crm_case_form_view_oppor'/>
 	<field name='arch' type='xml'>
 		<notebook colspan = '4'>
-			<page string = 'Entrevistas'>
+			<page string = 'Entrevistas' attrs="{'invisible': [('case_id', '!=', 18)]}">
 				<field name = 'entrevistas_ids'/>
 <!--					<tree editable = 'botton' >
 						<field name = 'name'/>

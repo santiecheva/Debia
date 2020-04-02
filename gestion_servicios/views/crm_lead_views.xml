@@ -18,13 +18,13 @@
     		<attribute name="string">Aseguradora</attribute>
     		<attribute name="domain">[('entidad','=','eps'),('customer','=',True)]</attribute>
 		</field>
-		<!--
+		
 		<field name="partner_address_phone" position="attributes">
     		<attribute name="invisible">1</attribute>
 		</field>
 		<field name="partner_address_email" position="attributes">
     		<attribute name="invisible">1</attribute>
-		</field> -->				
+		</field> 				
 		<field name="phone" position="attributes">
     		<attribute name="invisible">1</attribute>
 		</field>					
@@ -33,11 +33,16 @@
 		</field>				
 		<field name = 'phone' position = 'after'>
 			<field name = 'lesionado_id'/>
-			<field name = 'propietario_id' /> 			
-			<field name = 'case_id'/>
-			<field name = 'tipo_documento'/>  
-			<field name = 'cedula_lesionado'/>
-			<field name = 'phone_lesionado' widget = 'phone'/>
+						
+			<field name = 'phone_lesionado_related' attrs="{'invisible': [('phone_lesionado_related', '==', False)]}" widget = 'phone' />
+			
+			<field name = 'phone_lesionado' attrs="{'invisible': [('phone_lesionado_related', '!=', False)]}" widget = 'phone'/>			
+			<field name = 'tipo_documento'/>
+
+			<field name = 'cedula_lesionado_related' attrs="{'invisible': [('cedula_lesionado_related', '==', False)]}"/>
+
+			<field name = 'cedula_lesionado' attrs="{'invisible': [('cedula_lesionado_related', '!=', False)]}" />
+
 
 		</field>
 		<field name='team_id' position='before'>
@@ -53,6 +58,8 @@
 		<field name = 'tag_ids' position = 'after'>
 			<field name = 'estados_id'/>
 			<field name = 'motivo_estado' attrs="{'invisible': [('estados_id', '=', False)]}"/>
+			<field name = 'case_id'/>
+
 		</field>			
 		<notebook colspan = '4'>
 			<page string = 'Accidente'>
@@ -63,6 +70,7 @@
 					</group>
 					<group>
 						<field name = 'heridos' placeholder = 'ejm: uno, dos, tres...'/>
+					
 					</group>
 				</group>	
 
@@ -92,12 +100,14 @@
 					</group>
 					<group>
 						<field name = 'fecha_egreso'/>
+						<field name = 'traslado_id'/>
+
 					</group>
 				</group>
 				<h2 style='color:SlateBlue;'>Informe Médico</h2>
 				<field name = 'informe_medico'/>
 			</page>
-			<page string = 'Información Entrevista'>
+			<page string = 'Información Entrevista'  attrs="{'invisible': [('case_id', '=', 18)]}">
 				<group>
 					<group>	
 						<field name = 'fecha_contactado'/>
@@ -105,7 +115,6 @@
 					</group>
 					<group>
 						<field name = 'contactado_id' />
-						<field name = 'traslado_id'/>
 						<field name = 'telefono_contactado' widget = 'phone'/>
 					</group>
 				</group>
@@ -117,12 +126,30 @@
 
 				<h2 style='color:SlateBlue;'>Tratamiento</h2>
 				<field name = 'atencion'/>
-
-
 			</page>
+
+
 			<page string = 'Observaciones'>
 				<field name = 'observaciones'/>
 			</page>
+
+			<page string = 'Mortal' attrs="{'invisible': [('case_id', '!=', 18)]}">
+				<group>
+					<group>
+						<field name = 'fiscalia'  />
+						<field name = 'registro_defuncion'  />
+
+					</group>
+					<group>
+						<field name = 'nunc'/>	
+						<field name = 'fecha_inscripcion'  />
+
+					</group>
+				</group>
+
+				<field name = 'exequias'/>
+			</page>
+
 <!-- 			<page string = 'Analisis final'>
 				<field name = 'analisis_final'/>
 			</page> -->

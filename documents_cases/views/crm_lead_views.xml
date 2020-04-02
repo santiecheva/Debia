@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id = 'crm_lead_document_cases_form' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service crm_lead form </field>
+	<field name='model'>crm.lead</field>
+	<field name='inherit_id' ref='crm.crm_case_form_view_oppor'/>
+	<field name='arch' type='xml'>
+		<notebook colspan = '4'>
+			<page string = 'Adjuntos'>
+				<field name='attach_ids' widget='one2many'>
+					<tree editable = 'bottom'>
+						<field name = 'name'/>
+						<field name = 'image_bin'/>
+						<field name = 'description'/>
+					</tree>
+				</field>
+			</page>
+		</notebook>
+	</field>
+</record>
+</odoo>

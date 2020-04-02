@@ -1,8 +1,8 @@
 {
 
-    'name': 'Documentos por canal',
-    "summary": "Módulo para la gestión de documentos",
-    'version': '11.0.0',
+    'name': 'Partner extension',
+    "summary": "Extensión Partner l10n",
+    'version': '12.0.0.1',
     'author':
         "Santiago Echeverri, "
         "Epistem Enterprise SAtS",
@@ -12,8 +12,11 @@
     ],
     "website": "https://epistementerprise.com/",
     "data": [
-        'views/documents_views.xml',
-        'views/crm_lead_views.xml',
+        'views/res_partner_views.xml',
+
+
+        #'security/ir.model.access.csv',
+        #'security/gestion_servicios.xml',
     ],
     #"demo": [
     #    'demo/res_users.xml',
