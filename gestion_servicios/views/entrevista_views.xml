@@ -40,15 +40,8 @@
 	<field name='inherit_id' ref='crm.crm_case_form_view_oppor'/>
 	<field name='arch' type='xml'>
 		<notebook colspan = '4'>
-			<page string = 'Entrevistas' attrs="{'invisible': [('case_id', '!=', 18)]}">
+			<page string = 'Entrevistas' attrs="{'invisible': [('team_id', '!=', 4)]}">
 				<field name = 'entrevistas_ids'/>
-<!--					<tree editable = 'botton' >
-						<field name = 'name'/>
-						<field name = 'documento'/>
-						<field name = 'relacion'/>
-						<field name = 'relato'/>
-					</tree>
-				</field>-->
 			</page>
 		</notebook>
 	</field>		
