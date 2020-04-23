@@ -11,6 +11,7 @@ class FilesTeam(models.Model):
 
 
 
+
 class Documents(models.Model):
 	_name = 'res.documents'
 	_description = 'Administracion de adjuntos'

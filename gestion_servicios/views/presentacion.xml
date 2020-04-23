@@ -27,8 +27,11 @@
 
            <tr>
            <th class = "table-active">DESTINATARIOS</th>
-           <td><span t-field = 'o.partner_id.name'/> - AREA INDEMNIZACIÓN SOAT</td>          
-           </tr>
+           <td><span t-field = 'o.partner_id.name'/> - AREA INDEMNIZACIÓN SOAT</td> 
+          </tr>
+          <tr>
+            <td>Numero de la factura: <span t-field = 'o.factura' /></td>
+          </tr>
          </table>
 
          <table class='table'>
@@ -46,7 +49,7 @@
            </tr>
            <tr>
             <td colspan = '2'><span t-field = 'o.lesionado_id.name'/></td>
-            <td><span t-field = 'o.lesionado_id.xidentification'/></td>
+            <td><span t-field = 'o.lesionado_id.cedula_lesionado_related'/></td>
            </tr>
            <tr class = "table-active">
             <th>Póliza</th><th>Tipo de Caso</th><th>Placa</th>
@@ -93,7 +96,7 @@
         </tr>
         <tr>
           <td>            
-            De acuerdo con la información registrada en el FURIPS de la IPS con razón social <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips' t-options='{"format": "MM/dd/yyyy"}'/> , siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la <span t-field = 'o.direccion_ips'/>, momentos en que el <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.cedula_lesionado' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de
+            De acuerdo con la información registrada en el FURIPS de la IPS con razón social <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips' t-options='{"format": "MM/dd/yyyy"}'/> , siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección<span t-field = 'o.direccion_ips'/>, momentos en que el <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.cedula_lesionado_related' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de
             placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, resulta herido cuando <span t-field ='o.relato_furips'/>
           </td>
         </tr> 

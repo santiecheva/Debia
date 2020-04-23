@@ -133,6 +133,9 @@ class CrmLead(models.Model):
 			raise exceptions.ValidationError('El valor no puede ser negativo')
 
 
+			
+
+	
 """
 	def default_analisis_final(self):
 		result = <div>PRUEBA</div>

@@ -10,13 +10,27 @@
     	</field>    	
 		<field name = 'vat' position = 'after'>	
 			<field name = 'entidad' widget = 'radio'/>
-		</field>	
+		</field>
+		<field name="vat" position="attributes">
+    		<attribute name="invisible">1</attribute>
+    	</field>
+	</field>
+</record>
+
+<record id = 'tracking_service_partner_form_document_type' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service partner form </field>
+	<field name='model'>res.partner</field>
+	<field name='inherit_id' ref='l10n_co.view_partner_form_inherit_l10n_co'/>
+	<field name='arch' type='xml'>		
+		<field name="l10n_co_document_type" position="attributes">
+    		<attribute name="invisible">1</attribute>
+    	</field>
 	</field>
 </record>
 
 <!-- <record id = 'tracking_service_partner_form_ext_vat' model = 'ir.ui.view'>
 	<field name='name'>Tracking Service partner form  ext vat</field>
-	<field name='model'>res.partner</field>
+	<field name='model'>res.partner</field>   l10n_co.view_partner_form_inherit_l10n_co
 	<field name='inherit_id' ref='l10n_co.view_partner_form_inherit_l10n_co'/>
 	<field name='arch' type='xml'>
 		<field name='l10n_co_document_type' position="attributes">
