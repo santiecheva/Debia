@@ -32,31 +32,30 @@ class CountryStateCity(models.Model):
     _name = 'res.country.state.city'
     _order = 'code'
 
-    code = fields.Char('City Code', size=5, help='Code DANE - 5 digits-',
+    code = fields.Char(string = 'City Code', size=5, help='Code DANE - 5 digits-',
                        required=True)
     name = fields.Char('City Name', size=64, required=True)
-    state_id = fields.Many2one('res.country.state', 'State', required=True)
-    country_id = fields.Many2one('res.country', 'Country', required=True)
+    state_id = fields.Many2one('res.country.state', string = 'State', required=True)
+    country_id = fields.Many2one('res.country', string ='Country', required=True)
 
 
 class PartnerInfoExtended(models.Model):
-    _name = 'res.partner'
     _inherit = 'res.partner'
 
     # Company Name (legal name)
-    companyName = fields.Char("Name of the Company")
+    companyName = fields.Char(string = "Name of the Company")
 
     # Brand Name (e.j. Claro Móvil = Brand, COMCEL SA = legal name)
-    companyBrandName = fields.Char("Brand")
+    companyBrandName = fields.Char(string ="Brand")
 
     # companyType
     companyType = fields.Selection(related='company_type')
 
     # Adding new name fields
-    x_name1 = fields.Char("First Name")
-    x_name2 = fields.Char("Second Name")
-    x_lastname1 = fields.Char("Last Name")
-    x_lastname2 = fields.Char("Second Last Name")
+    x_name1 = fields.Char(string ="First Name")
+    x_name2 = fields.Char(string ="Second Name")
+    x_lastname1 = fields.Char(string ="Last Name")
+    x_lastname2 = fields.Char(string ="Second Last Name")
 
     # Document information
     doctype = fields.Selection(
@@ -72,11 +71,11 @@ class PartnerInfoExtended(models.Model):
             (42, "42 - Foreign Identification Document"),
             (43, "43 - No Foreign Identification")
 
-        ], "Type of Identification"
+        ], string = "Type of Identification"
     )
-    xidentification = fields.Char("Document Number", store=True,
+    xidentification = fields.Char(string ='Document Number',
                                   help="Enter the Identification Number")
-    verificationDigit = fields.Integer('VD', size=2)
+    verificationDigit = fields.Integer(string ='VD', size=2)
     formatedNit = fields.Char(
         string='NIT Formatted',
         compute="_compute_concat_nit",
@@ -93,18 +92,18 @@ class PartnerInfoExtended(models.Model):
             (22, "International"),
             (25, "Common Autorretenedor"),
             (24, "Great Contributor")
-        ], "Tax Regime"
+        ], string ="Tax Regime"
 
     )
 
     # CIIU - Clasificación Internacional Industrial Uniforme
-    ciiu = fields.Many2one('ciiu', "ISIC Activity")
+    ciiu = fields.Many2one('ciiu', string ="ISIC Activity")
     personType = fields.Selection(
         [
             (1, "Natural"),
             (2, "Juridical")
         ],
-        "Type of Person",
+        string = "Type of Person",
         default=1
     )
 
@@ -123,27 +122,28 @@ class PartnerInfoExtended(models.Model):
     dv = fields.Integer(string=None, store=True)
 
     # Country -> State -> Municipality - Logic
-    country_id = fields.Many2one('res.country', "Country")
-    xcity = fields.Many2one('res.country.state.city', "Municipality")
+    country_id = fields.Many2one('res.country',string ="Country")
+    xcity = fields.Many2one('res.country.state.city', string = "Municipality")
     city = fields.Char(related="xcity.name")
 
     # identification field has to be unique,
     # therefore a constraint will validate it:
+    """
     _sql_constraints = [
         ('ident_unique',
          'UNIQUE(doctype,xidentification)',
          "Identification number must be unique!"),
     ]
-
+    """
     # Check to handle change of Country, City and Municipality
     change_country = fields.Boolean(string="Change Country / Department?",
                                     default=True, store=False)
 
     # Name of point of sales / delivery contact
-    pos_name = fields.Char("Point of Sales Name")
+    pos_name = fields.Char(string ="Point of Sales Name")
 
     # Birthday of the contact (only useful for non-company contacts)
-    xbirthday = fields.Date("Birthday")
+    xbirthday = fields.Date(string ="Birthday")
 
     def get_doctype(self, cr, uid, context={'lang': 'es_CO'}):
         result = []

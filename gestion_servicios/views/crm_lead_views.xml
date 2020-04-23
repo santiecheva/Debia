@@ -185,7 +185,7 @@
 				</div>
 				<div>
 					<field name= 'lesionado_id'/>
-					<field name = 'cedula_lesionado_related'/>
+					<field name = 'cedula_lesionado_related' readonly = '0'/>
 				</div>
 			</group>
 		</field>

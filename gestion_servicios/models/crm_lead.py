@@ -41,7 +41,7 @@ class CrmLead(models.Model):
 #   Campos del fórmularios de datos según la IPS
 	cedula_lesionado_related = fields.Char(string='Cédula del Afectado',
                                store=True,
-                               related='lesionado_id.xidentification')
+                               related='lesionado_id.vat')
 	phone_lesionado_related = fields.Char(string='Telefono del Afectado',
                                store=True,
                                related='lesionado_id.mobile')	
@@ -91,6 +91,7 @@ class CrmLead(models.Model):
 	
 
 	funeraria = fields.Char(string = 'Funeraria')
+
 	fecha_velacion = fields.Date(string = 'Fecha de Velación')
 	
 	cementerio = fields.Char(string = 'Cementerio')
