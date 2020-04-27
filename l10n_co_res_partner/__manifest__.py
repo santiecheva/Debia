@@ -2,11 +2,11 @@
 {
     'name': 'Colombia - Terceros',
     'category': 'Localization',
-    'version': '9.0.0.1.1',
-    'author': 'Dominic Krimmer, Plastinorte S.A.S',
+    'version': '12.0.1',
+    'author': 'Dominic Krimmer, Plastinorte S.A.S, Santiago Echeverri ',
     'license': 'AGPL-3',
-    'maintainer': 'dominic.krimmer@gmail.com',
-    'website': 'https://www.plastinorte.com',
+    #'maintainer': 'dominic.krimmer@gmail.com',
+    #'website': 'https://www.plastinorte.com',
     'summary': 'Colombia Terceros: Extended Partner / '
                'Contact Module - Odoo 9.0',
     'images': ['images/main_screenshot.png'],

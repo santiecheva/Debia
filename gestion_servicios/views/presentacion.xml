@@ -27,17 +27,14 @@
 
            <tr>
            <th class = "table-active">DESTINATARIOS</th>
-           <td><span t-field = 'o.partner_id.name'/> - AREA INDEMNIZACIÓN SOAT</td> 
-          </tr>
-          <tr>
-            <td>Numero de la factura: <span t-field = 'o.factura' /></td>
+           <td><span t-field = 'o.partner_id.name'/> - ÁREA INDEMNIZACIÓN SOAT</td> 
           </tr>
          </table>
 
          <table class='table'>
           <tr>
             <th colspan="3" class = "table-active">
-              <center>INFORMACION GENERAL</center>
+              <center>INFORMACIÓN GENERAL</center>
             </th>
           </tr>
           <tr> 
@@ -45,11 +42,11 @@
           </tr>
             <tr class = "table-active">
               <th colspan ='2'>Nombre Completo:</th>
-              <th>CC (DNI)</th>
+            <th>Identificación</th>
            </tr>
            <tr>
             <td colspan = '2'><span t-field = 'o.lesionado_id.name'/></td>
-            <td><span t-field = 'o.lesionado_id.cedula_lesionado_related'/></td>
+            <td><span t-field = 'o.tipo_documento_compute'/> <span t-field = 'o.cedula_lesionado_related'/></td>
            </tr>
            <tr class = "table-active">
             <th>Póliza</th><th>Tipo de Caso</th><th>Placa</th>
@@ -70,11 +67,11 @@
           <table class = 'table'>
              <tr>
           <th colspan="3" class="bg-danger">
-            <center>INDICE ACCIDENTALIDAD VEHICULO INVOLUCRADO</center>
+            <center>ÍNDICE ACCIDENTALIDAD VEHÍCULO INVOLUCRADO</center>
           </th>
         </tr>
         <tr>
-        <td> 
+        <td class= "text-justify"> 
             <b>Buscamos en la página del RUNT el índice de accidentalidad del vehículo involucrado y el vehículo de placas <span t-field = 'o.placa' /> Así. </b>
           </td>
           </tr>
@@ -95,8 +92,8 @@
           </th>
         </tr>
         <tr>
-          <td>            
-            De acuerdo con la información registrada en el FURIPS de la IPS con razón social <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips' t-options='{"format": "yyyy/mm/dd"}'/> , siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección<span t-field = 'o.direccion_ips'/>, momentos en que la persona afectada <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.cedula_lesionado_related' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de
+          <td class= "text-justify">            
+            De acuerdo con la información registrada en el FURIPS de la IPS con razón social <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, momentos en que la persona afectada <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.cedula_lesionado_related' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de
             placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, resulta afectada cuando <span t-field ='o.relato_furips'/>
           </td>
         </tr> 
@@ -108,13 +105,24 @@
           <center>DILIGENCIAS</center>
         </th>
       </tr>
+        <t t-if='o.is_contactado == True'>
       <tr>
-          <td>     
-               Conforme a la información que nos brinda la persona contactada <span t-field = 'o.contactado_id.title'/> <span t-field = 'o.contactado_id.name' />, en el número telefónico <span t-field = 'o.telefono_contactado'/> el accidente ocurrió el día <span t-field = 'o.fecha_contactado' t-options='{"format": "yyyy/mm/dd"}' /> siendo aproximadamente  <span t-field = 'o.fecha_contactado'  t-options='{"format": "HH:mm"}'/> horas, en la dirección: <span t-field = 'o.direccion_contactado'/>; momento en que transitaba en vía pública en calidad de <span t-field = 'o.calidad'/>, donde se involucra el vehículo de tipo  <span t-field ='o.vehiculo_id.name'/> de placas <span t-field ='o.placa'/> amparado bajo la póliza SOAT No.<span t-field ='o.poliza'/>, expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, la persona resulta afectada cuando <span t-field = 'o.relato_lesionado'/> 
-               La persona afectada ingresa el día <span t-field = 'o.fecha_ingreso' t-options='{"format": "yyyy/mm/dd"}'/> a la IPS de razón social <span t-field = 'o.insurance_id.name'/> y egresa el <span t-field = 'o.fecha_egreso' t-options='{"format": "yyyy/mm/dd"}'/>.
-               Resulta (<span t-field = 'o.heridos'/>) personas heridas.
+          <td class = "text-justify">     
+               Conforme a la información que nos brinda la persona contactada <span t-field = 'o.contactado_id.title'/> <span t-field = 'o.contactado_id.name' />, en el número telefónico <span t-field = 'o.telefono_contactado'/> el accidente ocurrió el día <span t-field = 'o.fecha_contactado'  t-options='{"format": "dd/MM/yyyy"}' /> siendo aproximadamente  <span t-field = 'o.fecha_contactado'  t-options='{"format": "HH:mm"}'/> horas, en la dirección: <span t-field = 'o.direccion_contactado'/>; momento en que transitaba en vía pública en calidad de <span t-field = 'o.calidad'/>, donde se involucra el vehículo de tipo  <span t-field ='o.vehiculo_id.name'/> de placas <span t-field ='o.placa'/> amparado bajo la póliza SOAT No.<span t-field ='o.poliza'/>, expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, la persona resulta afectada cuando <span t-field = 'o.relato_lesionado'/> 
+               La persona afectada ingresa el día <span t-field = 'o.fecha_ingreso' t-options='{"format": "dd/MM/yyyy"}'/> a la IPS con razón social <span t-field = 'o.insurance_id.name'/> y egresa el <span t-field = 'o.fecha_egreso'  t-options='{"format": "dd/MM/yyyy"}'/>.
+               Resulta (<span t-field = 'o.heridos'/>) persona(s) herida(s).
           </td>
         </tr>
+        </t>
+          <t t-else=''>
+            <tr>
+              <td class = "text-justify">
+                No se logra contacto con <span t-field = 'o.contactado_id.title'/> <span t-field = 'o.contactado_id.name'/> para confirmar el accidente ocurrido el día <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, momentos en que la persona afectada se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, y esclarecer como resulta afectado. 
+
+                Por favor remitirse a observaciones.
+               </td>
+            </tr>
+          </t>
           </table>
           <table class = 'table'>
           <tr>
@@ -123,8 +131,8 @@
         </th>
       </tr>
       <tr>
-          <td>  
-          la persona afectada fue trasladada por <span t-field = 'o.traslado_id.name' />, hasta la <span t-field = 'o.insurance_id.name' />.
+          <td class = "text-justify">  
+          La persona afectada fue trasladada por <span t-field = 'o.traslado_id.name' />, hasta la <span t-field = 'o.insurance_id.name' />.
             </td>
         </tr>
           </table>
@@ -135,9 +143,17 @@
         </th>
       </tr>
       <tr>
-          <td>
-            Según la información relatada se afectó con: <span t-field = 'o.lesion'/>. En el informe médico encontramos que el diagnóstico de ingreso fue: <span t-field = 'o.informe_medico' />.
+          <t t-if="o.is_contactado">
+          <td class = "text-justify">
+            Según la información relatada se afectó con: <span t-field = 'o.lesion'/>.
+             En el informe médico encontramos que el diagnóstico de egreso fue: <span t-field = 'o.informe_medico' />.
           </td>
+        </t>
+        <t t-else = ''>
+          <td class = "text-justify">
+          En el informe médico encontramos que el diagnóstico de egreso fue: <span t-field = 'o.informe_medico' />.
+          </td>
+        </t>
         </tr>
           </table>   
           <table class = 'table'>
@@ -147,43 +163,83 @@
         </th>
       </tr>
       <tr>
-          <td>  
-          Según la persona entrevistada, en la <span t-field = 'o.insurance_id.name' />, le brindaron la primera atención, <span t-field = 'o.atencion' />.
+      <t t-if="o.is_contactado">
+          <td class = "text-justify">  
+          Según la persona entrevistada, En la IPS con razón social <span t-field = 'o.insurance_id.name' />, le brindaron la primera atención, <span t-field = 'o.atencion' />.
           </td>
+        </t>
+        <t t-else=''>
+          <td class = "text-justify">
+         Según la IPS con razón social <span t-field = 'o.insurance_id.name' />, le brindaron la primera atención, <span t-field = 'o.informe_medico' />.
+          </td>
+        </t>
         </tr>
           </table>  
           <table class = 'table'>
-                     <tr>
+      <tr>
       <th colspan="3" class = "table-active">
-        <center>INFORMACION ADICIONAL - CONSULTA PROPIETARIO</center>
+        <center>INFORMACIÓN ADICIONAL - CONSULTA PROPIETARIO</center>
       </th>
     </tr>
     <tr>
-      <td>  
-          Acorde a la información, la propiedad del vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> es de: <span t-field = 'o.propietario_id.name' />, revisada la base de datos RUNT donde está registrada como se mostrará en el anexo:.
+      <td class = "text-justify">  
+          Acorde a la información, la propiedad del vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> es de: <span t-field = 'o.propietario_id.name' />, revisada la base de datos RUNT donde está registrada como se mostrará en el anexo:
       </td>
     </tr>
     <tr>
       <td><div class="img-fluid" alt="Responsive image">
         <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-         <t t-if = "attach.name.name == 'RUNT'">        
+         <t t-if = "attach.name.name == 'Runt con Datos del propietario'">        
             <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
           </t>
         </t>
       </div></td>
     </tr>    
   </table>
+
+  <table class = 'table'>
+    <tr>
+      <th colspan="3" class = "table-active">
+        <center>PÓLIZA</center>
+      </th>
+    </tr>
+    <tr>
+      <td class = "text-justify">  
+          La póliza SOAT No.  <span t-field = 'o.poliza' /> presentó vigencia desde el día <span t-field = 'o.vigencia_poliza_desde' t-options='{"format": "dd/MM/yyyy"}'/> hasta el día <span t-field = 'o.vigencia_poliza_hasta' t-options='{"format": "dd/MM/yyyy"}' />
+
+      </td>
+    </tr>
+    <tr>
+      <td><div class="img-fluid" alt="Responsive image">
+        <t t-foreach = 'o.attach_ids' t-as = 'attach'>
+         <t t-if = "attach.name.name == 'Vigencia de la póliza del SOAT'">        
+            <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
+          </t>
+        </t>
+      </div></td>
+    </tr>    
+  </table>
+
+
+
   <table class = 'table'>
      <tr>
       <th colspan="3" class = "table-active">
         <center>ANÁLISIS FINAL</center>
       </th>
     </tr>
+      <t t-if='o.is_estandar == True'>
     <tr>
-      <td>  
-          Según el cotejamiento de la información dada por la persona entrevistada y los gastos que la <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />, encontramos que la información coincide y el centro clínico realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa. Así mismo, se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "yyyy/mm/dd"}'/>, donde resultó lesionado <!--<span t-field = 'o.lesionado_id.title'/> --> <span t-field = 'o.lesionado_id.name' /> que involucra el vehiculo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name' />.
+      <td class = "text-justify">  
+          Según el cotejamiento de la información dada por la persona entrevistada y los gastos que la <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />, encontramos que la información coincide y el centro clínico realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa. Así mismo, se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó lesionado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name' />.
       </td>
     </tr>
+        </t>
+        <t t-else = ''>
+        <tr>
+          <td class = "text-justify"> <span t-field = 'o.analisis_final' /></td>
+        </tr>
+      </t>
   </table>
   <table class = 'table'>
     <tr>
@@ -212,7 +268,7 @@
   </table>
 
 <t t-foreach = 'o.attach_ids' t-as = 'attach'>
- <t t-if = "attach.name.name == 'ANEXO'">
+ <t t-if = "attach.name.name != 'RUNT' and attach.name.name != 'Vigencia de la póliza del SOAT' and attach.name.name != 'Runt con Datos del propietario' and attach.name.name != 'Accidentalidad en el Runt'">
   <table class = 'table'>
    <td>
     <b><span t-field = "attach.description" /></b>
@@ -229,7 +285,7 @@
         <div class='footer text-muted'>
         <p> 
           
-          LA INFORMACION CONTENIDA EN ESTE DOCUMENTO DEBE SER TRATADA DE MANERA CONFIDENCIAL  
+          LA INFORMACIÓN CONTENIDA EN ESTE DOCUMENTO DEBE SER TRATADA DE MANERA CONFIDENCIAL  
     
         </p>
         <p>

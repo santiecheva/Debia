@@ -34,17 +34,55 @@ class CrmLead(models.Model):
 	lesionado_id = fields.Many2one('res.partner', string='Afectado', domain = "[('entidad','=',False)]" )	
 	tipo_documento = fields.Selection([('cedula','Cédula'),('ti','Tarjeta de Identidad'),
 										('cc','Registro Civil'),('as','Adulto sin identificación'),
-											('ms','Menor sin identificación'),('ce','Cédula de extrangería'),('nn','No identificado')], string = 'Tipo de Documento')		
+											('ms','Menor sin identificación'),('ce','Cédula de extrangería'),('nn','No identificado')], string = 'Tipo de Documento')
+
+
 	cedula_lesionado = fields.Char(string = 'Cedula del Afectado')
 	phone_lesionado = fields.Char(string = 'Telefono del Afectado')	
 
-#   Campos del fórmularios de datos según la IPS
+#   Campos del fórmularios de datos según la IPS relacionados con el afectado
 	cedula_lesionado_related = fields.Char(string='Cédula del Afectado',
-                               store=True,
-                               related='lesionado_id.vat')
+                               compute='compute_cedula_lesionado', readonly = 'True',
+                                store= 'True')
+
 	phone_lesionado_related = fields.Char(string='Telefono del Afectado',
                                store=True,
-                               related='lesionado_id.mobile')	
+                               related='lesionado_id.mobile')
+
+	@api.depends('lesionado_id')
+	@api.model
+	def compute_cedula_lesionado(self):
+		if self.lesionado_id:
+			self.cedula_lesionado_related = self.lesionado_id.xidentification
+
+
+	tipo_documento_compute = fields.Char(string = 'Tipo de Documento', compute='compute_tipo_documento', readonly = 'True')
+
+	@api.depends('lesionado_id')
+	@api.model
+	def compute_tipo_documento(self):
+		if self.lesionado_id:
+			if self.lesionado_id.doctype == 1:
+				self.tipo_documento_compute = 'Sin Identificación'
+			elif self.lesionado_id.doctype == 11:
+				self.tipo_documento_compute = 'Certificado de Nacimiento'
+			elif self.lesionado_id.doctype == 12:
+				self.tipo_documento_compute = 'Tarjeta de Identidad'			
+			elif self.lesionado_id.doctype == 13:
+				self.tipo_documento_compute = 'Cédula de Ciudadanía'
+			elif self.lesionado_id.doctype == 21:
+				self.tipo_documento_compute = 'Tarjeta de Extranjería'
+			elif self.lesionado_id.doctype == 22:
+				self.tipo_documento_compute = 'Cédula de Extranjería'
+			elif self.lesionado_id.doctype == 31:
+				self.tipo_documento_compute = 'NIT'
+			elif self.lesionado_id.doctype == 41:
+				self.tipo_documento_compute = 'Pasaporte'
+			elif self.lesionado_id.doctype == 42:
+				self.tipo_documento_compute = 'Documento de Identificación Extranjero'
+			elif self.lesionado_id.doctype == 43:
+				self.tipo_documento_compute = 'Sin Identificación del Exterior'	
+
 
 	fecha_ips = fields.Datetime(string = 'Fecha Accidente FURIPS')
 	direccion_ips = fields.Char(string = 'Dirección Accidente FURIPS')
@@ -101,8 +139,11 @@ class CrmLead(models.Model):
 	direccion_fiscalia = fields.Char(string = 'Dirección Fiscalía')
 	telefono_fiscalia = fields.Char(string = 'Telefono Fiscalía')
 
-	#analisis_final = fields.Html(string = 'Analisis Final',
-	 #	default = default_analisis_final)
+	analisis_final = fields.Html(string = 'Analisis Final')
+
+	# Campos para determinar el tipo de diseño del informe
+	is_contactado = fields.Boolean(string = 'Es Contactado', default=True)
+	is_estandar = fields.Boolean(string = 'Formato Estandar', default=True)
 
 	
 	@api.multi
@@ -123,11 +164,6 @@ class CrmLead(models.Model):
 			self.contactado_id = self.lesionado_id
 
 
-	# @api.constrains('heridos')
-	# def _check_valor(self):
-	# 	if self.heridos in [i for i in range(0:100)]:
-	# 		raise exceptions.ValidationError('Por Favor escriba la cantidad de heridos en letras ejm: dos.')		
-
 	@api.constrains('valor')
 	def _check_valor(self):
 		if self.valor < 0:
@@ -137,16 +173,3 @@ class CrmLead(models.Model):
 			
 
 	
-"""
-	def default_analisis_final(self):
-		result = <div>PRUEBA</div>
-		return result
-
-
-
-
-
-	 	<div>
-	 		Según el cotejamiento de la información dada por el entrevistado y los gastos que la  + self.insurance_id.name + reclama por la atención a este en la factura <b>No</b>  + self.factura +,  por el valor de $<span t-field = 'o.valor' />, encontramos que la información coincide y el centro clínico realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa. Así mismo, se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "MM/dd/yyyy"}'/>, donde resultó lesionado el señor <span t-field = 'o.lesionado_id.name' /> que involucra el <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por seguros <span t-field = 'o.partner_id.name' />.
-	 	</div>
-	"""

@@ -61,15 +61,15 @@ class PartnerInfoExtended(models.Model):
     doctype = fields.Selection(
         [
             (1, "No identification"),
-            (11, "11 - Birth Certificate"),
-            (12, "12 - Identity Card"),
-            (13, "13 - Citizenship Card"),
-            (21, "21 - Alien Registration Card"),
-            (22, "22 - Foreigner ID"),
-            (31, "31 - TAX Number (NIT)"),
-            (41, "41 - Passport"),
-            (42, "42 - Foreign Identification Document"),
-            (43, "43 - No Foreign Identification")
+            (11, "Birth Certificate"),
+            (12, "Identity Card"),
+            (13, "Citizenship Card"),
+            (21, "Alien Registration Card"),
+            (22, "Foreigner ID"),
+            (31, "NIT"),
+            (41, "Passport"),
+            (42, "Foreign Identification Document"),
+            (43, "No Foreign Identification")
 
         ], string = "Type of Identification"
     )
@@ -128,13 +128,13 @@ class PartnerInfoExtended(models.Model):
 
     # identification field has to be unique,
     # therefore a constraint will validate it:
-    """
+    
     _sql_constraints = [
         ('ident_unique',
          'UNIQUE(doctype,xidentification)',
          "Identification number must be unique!"),
     ]
-    """
+    
     # Check to handle change of Country, City and Municipality
     change_country = fields.Boolean(string="Change Country / Department?",
                                     default=True, store=False)
