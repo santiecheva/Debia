@@ -31,6 +31,7 @@
 		<field name="email_from" position="attributes">
     		<attribute name="invisible">1</attribute>
 		</field>
+
 						
 		<field name = 'phone' position = 'after'>
 			<field name = 'lesionado_id'/>
@@ -38,11 +39,11 @@
 			<field name = 'phone_lesionado_related' attrs="{'invisible': [('phone_lesionado_related', '==', False)]}" widget = 'phone' />
 			
 			<field name = 'phone_lesionado' attrs="{'invisible': [('phone_lesionado_related', '!=', False)]}" widget = 'phone'/>			
-			<field name = 'tipo_documento_compute'/>
+			<field name = 'doctype' readonly="1"/>
 
-			<field name = 'cedula_lesionado_related'/>
+			<field name = 'id_afectado' readonly = "1"/>
 
-		<!--	<field name = 'cedula_lesionado' attrs="{'invisible': [('cedula_lesionado_related', '!=', False)]}" /> attrs="{'invisible': [('cedula_lesionado_related', '==', False)]}"
+		<!--	<field name = 'cedula_lesionado' attrs="{'invisible': [('cedula_lesionado_related', '!=', False)]}" /> attrs="{'invisible': [('cedula_lesionado_related', '==', False)]}"{'readonly':[('user_id','=',uid)]}
 -->
 
 		</field>
@@ -187,7 +188,7 @@
 				</div>
 				<div>
 					<field name= 'lesionado_id'/>
-					<field name = 'cedula_lesionado_related'/>
+					<field name = 'id_afectado'/>
 				</div>
 			</group>
 		</field>

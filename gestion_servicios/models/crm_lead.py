@@ -37,51 +37,54 @@ class CrmLead(models.Model):
 											('ms','Menor sin identificación'),('ce','Cédula de extrangería'),('nn','No identificado')], string = 'Tipo de Documento')
 
 
-	cedula_lesionado = fields.Char(string = 'Cedula del Afectado')
+	cedula_lesionado = fields.Char(string = 'Cedula del Afectado', readonly = 'True' )
 	phone_lesionado = fields.Char(string = 'Telefono del Afectado')	
 
 #   Campos del fórmularios de datos según la IPS relacionados con el afectado
 	cedula_lesionado_related = fields.Char(string='Cédula del Afectado',
-                               compute='compute_cedula_lesionado', readonly = 'True',
-                                store= 'True')
+                                readonly = 'True',
+                                )
 
 	phone_lesionado_related = fields.Char(string='Telefono del Afectado',
                                store=True,
                                related='lesionado_id.mobile')
 
-	@api.depends('lesionado_id')
-	@api.model
-	def compute_cedula_lesionado(self):
+	doctype = fields.Char(string = 'Tipo de Documento')
+	#onchange con campo cedula lesionadi
+	
+	@api.onchange('lesionado_id')
+	def cedula_lesionado(self):
 		if self.lesionado_id:
-			self.cedula_lesionado_related = self.lesionado_id.xidentification
+			self.id_afectado = self.lesionado_id.xidentification
 
+	id_afectado = fields.Char(string='Documento del Lesionado')
 
-	tipo_documento_compute = fields.Char(string = 'Tipo de Documento', compute='compute_tipo_documento', readonly = 'True')
+	tipo_documento_compute = fields.Char(string = 'Tipo de Documento',  readonly = 'True')
 
-	@api.depends('lesionado_id')
+	@api.onchange('lesionado_id')
 	@api.model
 	def compute_tipo_documento(self):
 		if self.lesionado_id:
 			if self.lesionado_id.doctype == 1:
-				self.tipo_documento_compute = 'Sin Identificación'
+				self.doctype = 'Sin Identificación'
 			elif self.lesionado_id.doctype == 11:
-				self.tipo_documento_compute = 'Certificado de Nacimiento'
+				self.doctype = 'Certificado de Nacimiento'
 			elif self.lesionado_id.doctype == 12:
-				self.tipo_documento_compute = 'Tarjeta de Identidad'			
+				self.doctype = 'Tarjeta de Identidad'			
 			elif self.lesionado_id.doctype == 13:
-				self.tipo_documento_compute = 'Cédula de Ciudadanía'
+				self.doctype = 'Cédula de Ciudadanía'
 			elif self.lesionado_id.doctype == 21:
-				self.tipo_documento_compute = 'Tarjeta de Extranjería'
+				self.doctype = 'Tarjeta de Extranjería'
 			elif self.lesionado_id.doctype == 22:
-				self.tipo_documento_compute = 'Cédula de Extranjería'
+				self.doctype = 'Cédula de Extranjería'
 			elif self.lesionado_id.doctype == 31:
-				self.tipo_documento_compute = 'NIT'
+				self.doctype = 'NIT'
 			elif self.lesionado_id.doctype == 41:
-				self.tipo_documento_compute = 'Pasaporte'
+				self.doctype = 'Pasaporte'
 			elif self.lesionado_id.doctype == 42:
-				self.tipo_documento_compute = 'Documento de Identificación Extranjero'
+				self.doctype = 'Documento de Identificación Extranjero'
 			elif self.lesionado_id.doctype == 43:
-				self.tipo_documento_compute = 'Sin Identificación del Exterior'	
+				self.doctype = 'Sin Identificación del Exterior'	
 
 
 	fecha_ips = fields.Datetime(string = 'Fecha Accidente FURIPS')
@@ -170,6 +173,4 @@ class CrmLead(models.Model):
 			raise exceptions.ValidationError('El valor no puede ser negativo')
 
 
-			
 
-	
