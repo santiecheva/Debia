@@ -161,7 +161,8 @@ class CrmLead(models.Model):
 		('cubierto_con_novedad','Formato Cubierto con Novedad'),
 		('no_cubierto','Formato no Cubierto'),
 		('ocurrencia_no_confirmada','Ocurrencia no confirmada'),
-		('trabajo_adelantado','Trabajo Adelantado')], 
+		('trabajo_adelantado_cubierto','Trabajo Adelantado Cubierto'),
+		('trabajo_adelantado_no_cubierto','Trabajo Adelantado no Cubierto')], 
 		 string = 'Formato Analisis', default='cubierto')
 
 
