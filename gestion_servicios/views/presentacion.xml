@@ -228,13 +228,45 @@
         <center>ANÁLISIS FINAL</center>
       </th>
     </tr>
-      <t t-if='o.is_estandar == True'>
+      <t t-if='o.is_estandar == "cubierto"'>
     <tr>
       <td class = "text-justify">  
-          Según el cotejamiento de la información dada por la persona entrevistada y los gastos que la <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />, encontramos que la información coincide y el centro clínico realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa. Así mismo, se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó lesionado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name' />.
+          Según el cotejamiento de la información dada por la persona entrevistada y los gastos que la <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />, encontramos que la información coincide y el centro clínico realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa. Así mismo, se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó afectado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name' />.
       </td>
     </tr>
-        </t>
+      </t>
+
+      <t t-elif='o.is_estandar == "cubierto_con_novedad"'>
+        <tr>
+        <td class = "text-justify">  
+        <p>Según el cotejamiento de la información dada por la persona entrevistada y los gastos que la <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />, encontramos que:</p> 
+        <p class = "text-justify"><span t-field = 'o.analisis_final' /></p>
+         <p>Así mismo, se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó afectado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name' />.
+          </p>
+         </td>   
+        </tr>      
+      </t>
+
+      <t t-elif='o.is_estandar == "no_cubierto"'>
+        <tr>
+        <td class = "text-justify">  
+        <p>Según el cotejamiento de la información dada por la persona entrevistada y los gastos que la <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />, encontramos que no coincide por el (los) siguiente(s) elemento(s):</p>
+        <p class = "text-justify"><span t-field = 'o.analisis_final' /></p>
+        </td>   
+        </tr>      
+      </t>      
+     <t t-elif='o.is_estandar == "ocurrencia_no_confirmada"'>
+        <tr>
+        <td class = "text-justify">  
+        <p>No se logra verificar si los gastos de la IPS con razón social: <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />. Coinciden con la versión del paciente y si la entidad realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa.
+
+         <p>Así mismo, no se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó afectado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>.
+          </p>
+         </td>   
+        </tr>      
+      </t>
+
+        
         <t t-else = ''>
         <tr>
           <td class = "text-justify"> <span t-field = 'o.analisis_final' /></td>

@@ -31,6 +31,7 @@
 		<form string='Resultado'>
 			<group>
 				<field name = 'name'/>
+				<field name = 'partner_id'/>
 			</group>
 		</form>
 	</field>
@@ -42,6 +43,7 @@
 	<field name='arch' type='xml'>
 		<tree string='vehículos'>
 				<field name = 'name'/>
+				<field name = 'partner_id'/>
 		</tree>
 	</field>
 </record>
@@ -92,6 +94,33 @@
 
 
 
+<record id = 'tracking_service_objecion_form' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service objecion form </field>
+	<field name='model'>maestro.objecion</field>
+	<field name='arch' type='xml'>
+		<form string='objecion'>
+			<group>
+				<field name = 'name'/>
+				<field name = 'codigo'/>
+				<field name = 'insurance_id'/>
+			</group>
+		</form>
+	</field>
+</record>
+
+<record id = 'tracking_service_objecion_tree' model = 'ir.ui.view'>
+	<field name='name'>Tracking Service objecion tree </field>
+	<field name='model'>maestro.objecion</field>
+	<field name='arch' type='xml'>
+		<tree string='objecion'>
+			<field name = 'name'/>
+			<field name = 'codigo'/>
+			<field name = 'insurance_id'/>
+		</tree>
+	</field>
+</record>
+
+
 <!-- ###############ACTIONS####################-->
 <record id = 'action_tipe_cases' model = 'ir.actions.act_window'>
 <field name = 'name'>Casos action </field>
@@ -121,6 +150,13 @@
 <field name="view_mode">tree,form</field>
 </record>
 
+<record id = 'action_maestro_objecion' model = 'ir.actions.act_window'>
+<field name = 'name'>Traslados action</field>
+<field name='type'>ir.actions.act_window</field>
+<field name="res_model">maestro.objecion</field>
+<field name="view_mode">tree,form</field>
+</record>
+
 <!-- ###############MENUS####################-->
 
 <menuitem id='datos_cases_menu_root' name='Datos de casos' sequence='2'/>
@@ -131,12 +167,14 @@
 <menuitem id='maestro_resultados_menu' name='Resultados' sequence='2' parent='datos_cases_menu_root'/>
 <menuitem id='maestro_resultados_submenu' name='Resultados' sequence='3' parent='maestro_resultados_menu' action = 'action_maestro_resultados'/>
 
-<menuitem id='maestro_traslados_menu' name='Traslados' sequence='2' parent='datos_cases_menu_root' />
+<menuitem id='maestro_traslados_menu' name='Traslados' sequence='3' parent='datos_cases_menu_root' />
 <menuitem id='maestro_traslados_submenu' name='Traslados' sequence='3' parent='maestro_traslados_menu' action='action_maestro_traslados'/>
 
-<menuitem id='tipo_vehiculo_menu' name='Vehículos' sequence='2' parent='datos_cases_menu_root'/>
+<menuitem id='tipo_vehiculo_menu' name='Vehículos' sequence='4' parent='datos_cases_menu_root'/>
 <menuitem id='tipo_vehiculo_submenu' name='Vehículos' sequence='3' parent='tipo_vehiculo_menu' action = 'action_tipo_vehiculo'/>
 
+<menuitem id='maestro_objecion_menu' name='Objeción' sequence='5' parent='datos_cases_menu_root'/>
+<menuitem id='maestro_objecion_submenu' name='Causales de Objeción' sequence='3' parent='maestro_objecion_menu' action = 'action_maestro_objecion'/>
 
 
 </odoo>

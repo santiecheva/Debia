@@ -7,6 +7,7 @@
 		<form string='Resultado'>
 			<group>
 				<field name = 'name'/>
+				<field name = 'partner_id'/>
 			</group>
 		</form>
 	</field>
@@ -18,6 +19,7 @@
 	<field name='arch' type='xml'>
 		<tree string='vehículos'>
 				<field name = 'name'/>
+				<field name = 'partner_id'/>
 		</tree>
 	</field>
 </record>

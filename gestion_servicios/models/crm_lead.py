@@ -1,11 +1,18 @@
 from datetime import datetime, timedelta, date
+import logging
 
 
 from odoo import models, fields, api, exceptions, tools
 
+_logger = logging.getLogger(__name__)
+
+
 class CrmLead(models.Model):
 
 	_inherit = 'crm.lead'
+
+
+
 
 #Campos generales
 
@@ -142,18 +149,21 @@ class CrmLead(models.Model):
 	direccion_fiscalia = fields.Char(string = 'Dirección Fiscalía')
 	telefono_fiscalia = fields.Char(string = 'Telefono Fiscalía')
 
+
+	objecion_id = fields.Many2one('maestro.objecion', string = 'Causal de Objeción')
+
 	analisis_final = fields.Html(string = 'Analisis Final')
 
 	# Campos para determinar el tipo de diseño del informe
 	is_contactado = fields.Boolean(string = 'Es Contactado', default=True)
-	is_estandar = fields.Boolean(string = 'Formato Estandar', default=True)
+	is_estandar = fields.Selection([
+		('cubierto','Formato Cubierto'),
+		('cubierto_con_novedad','Formato Cubierto con Novedad'),
+		('no_cubierto','Formato no Cubierto'),
+		('ocurrencia_no_confirmada','Ocurrencia no confirmada'),
+		('trabajo_adelantado','Trabajo Adelantado')], 
+		 string = 'Formato Analisis', default='cubierto')
 
-	
-	@api.multi
-	def write_phone(self):
-		partner_ids = self.env['res.partner'].search([('id','=',self.lesionado_id.id)])
-		for partner in partner_ids:
-			partner.write({'mobile':self.phone_lesionado})
 
 
 	@api.onchange('phone_lesionado')
@@ -171,6 +181,12 @@ class CrmLead(models.Model):
 	def _check_valor(self):
 		if self.valor < 0:
 			raise exceptions.ValidationError('El valor no puede ser negativo')
+
+	@api.constrains('stage_id')
+	def _check_stage(self):
+		if self.env.user == self.user_id:
+			if self.stage_id == 4:
+				raise exceptions.ValidationError('Por favor comuníquese con su coordinador para cerrar el caso')
 
 
 
