@@ -1,0 +1,119 @@
+<odoo>
+
+<report id='presentacion_siniestro_mortales'
+  string = 'Presentación Mortales'
+  model='crm.lead'
+  report_type = 'qweb-pdf'
+  name='gestion_servicios.presentacion_siniestro_mortales'/>
+
+  <template id='presentacion_siniestro_mortales'>
+    <t t-call='web.html_container'>
+     <t t-foreach="docs" t-as="o">
+      <t t-call='web.external_layout'>
+        <div class='header'>
+         <link rel="stylesheet" href="/gestion_servicios/static/src/css/styles.css"/>
+          <title> Informe validación telefónica </title>
+        </div>
+
+        <div class='page'>
+         <table class = 'table'>
+            <tr>
+            <th class = "table-active">ASUNTO</th>            
+          <td>INFORME DE VALIDACIÓN <span t-field ='o.team_id.name'/></td>
+           </tr>
+
+           <tr>
+           <th class = "table-active">DESTINATARIOS</th>
+           <td><span t-field = 'o.partner_id.name'/> - ÁREA INDEMNIZACIÓN SOAT</td> 
+          </tr>
+         </table>
+
+         <table class='table'>
+          <tr>
+            <th colspan="3" class = "table-active">
+              <center>INFORMACIÓN GENERAL</center>
+            </th>
+          </tr>
+          <tr> 
+          <td colspan="3"></td>           
+          </tr>
+            <tr class = "table-active">
+              <th colspan ='2'>Nombre Completo:</th>
+            <th>Identificación</th>
+           </tr>
+           <tr>
+            <td colspan = '2'><span t-field = 'o.lesionado_id.name'/></td>
+            <td><span t-field = 'o.doctype'/> <span t-field = 'o.lesionado_id.xidentification'/></td>
+           </tr>
+           <tr class = "table-active">
+            <th>Póliza</th><th>Tipo de Caso</th><th>Placa</th>
+           </tr>
+           <tr>
+            <td><span t-field ='o.poliza'/></td>
+            <td><span t-field = 'o.case_id.name'/></td>
+            <td><span t-field ='o.placa'/></td>
+           </tr>
+          <tr class = "table-active">
+            <th colspan = '2'>Reclamante</th>
+            <th>Factura</th>
+          </tr>            
+          <tr>
+            <td colspan = '2'><span t-field = 'o.insurance_id.name'/></td><td><span t-field = 'o.factura'/></td>
+          </tr>
+          </table>
+          <table class = 'table'>
+            <tr>
+             <th colspan="3" class = "table-active">
+                <center>CONTEXTO DEL CASO</center>
+              </th>
+            </tr>
+            <tr> 
+              <td class = 'text-justify'>
+              Solicitud para adelantar las labores necesarias de investigación de reclamación por muerte de la persona: <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' />, quien en vida se identificaba con el documento de tipo <span t-field = 'o.doctype'/>  Nro <span t-field = 'o.lesionado_id.xidentification'/> expedido en la fecha <span t-field = 'o.fecha_expedicion_cc' t-options='{"format": "dd/MM/yyyy"}'/> en <span t-field = 'o.ciudad_expedicion'/> , con el presente informe les damos a conocer el resultado de las diligencias realizadas. 
+              </td>
+            </tr>
+          </table>
+
+         <table class = 'table'>
+             <tr>
+          <th colspan="3" class = "table-active">
+            <center>HECHOS</center>
+          </th>
+        </tr>
+        <t t-if = 'is_estandar =="trabajo_adelantado_cubierto" or is_estandar =="trabajo_adelantado_no_cubierto"' >
+       <tr>
+          <td class= "text-justify">            
+            De acuerdo con la información de la IPS con razón social <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, momentos en que la persona afectada <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.lesionado_id.xidentification' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de
+            placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, resulta afectada cuando <span t-field ='o.relato_furips'/>
+          </td>
+        </tr> 
+      </t>
+
+    <t t-else = ''>    
+        <tr>
+          <td class= "text-justify">            
+            De acuerdo con la información registrada en el FURIPS de la IPS con razón social <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, momentos en que la persona afectada <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.lesionado_id.xidentification' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de
+            placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, resulta afectada cuando <span t-field ='o.relato_furips'/>
+          </td>
+        </tr> 
+      </t>
+        </table>           
+
+
+
+        <div class='footer text-muted'>
+        <p> 
+          
+          LA INFORMACIÓN CONTENIDA EN ESTE DOCUMENTO DEBE SER TRATADA DE MANERA CONFIDENCIAL  
+    
+        </p>
+        <p>
+          Su acceso y suministro a terceros debe ser autorizada por la dirección de SOAT
+        </p> 
+        </div>
+      </t>
+    </t>
+  </t>
+ </template>
+
+</odoo>

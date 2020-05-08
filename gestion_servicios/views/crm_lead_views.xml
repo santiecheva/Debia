@@ -163,6 +163,8 @@
 						<!--<field name = 'numero_noticia'/>-->
 						<field name = 'cementerio'  />
 						<field name = 'pago'  />
+						<field name = 'fecha_expedicion_cc'  />
+						<field name = 'ciudad_expedicion'  widget = 'selection' />
 					</group>
 				</group>
 

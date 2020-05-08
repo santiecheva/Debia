@@ -91,12 +91,23 @@
             <center>HECHOS</center>
           </th>
         </tr>
+        <t t-if = 'is_estandar =="trabajo_adelantado_cubierto" or is_estandar =="trabajo_adelantado_no_cubierto"' >
+       <tr>
+          <td class= "text-justify">            
+            De acuerdo con la información de la IPS con razón social <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, momentos en que la persona afectada <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.lesionado_id.xidentification' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de
+            placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, resulta afectada cuando <span t-field ='o.relato_furips'/>
+          </td>
+        </tr> 
+      </t>
+
+    <t t-else = ''>    
         <tr>
           <td class= "text-justify">            
             De acuerdo con la información registrada en el FURIPS de la IPS con razón social <span t-field ='o.insurance_id.name' />, los hechos ocurrieron el día <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, momentos en que la persona afectada <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' /> con documento de identidad No. <span t-field = 'o.lesionado_id.xidentification' /> se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de
             placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, resulta afectada cuando <span t-field ='o.relato_furips'/>
           </td>
         </tr> 
+      </t>
         </table> 
         
           <table class = 'table'>
@@ -105,7 +116,17 @@
           <center>DILIGENCIAS</center>
         </th>
       </tr>
-        <t t-if='o.is_contactado == True'>
+        <t t-if='is_estandar =="trabajo_adelantado_cubierto" or is_estandar =="trabajo_adelantado_no_cubierto"'>
+          <tr>
+            <td class = "text-justify">
+               Conforme a la información que nos brinda la persona contactada <span t-field = 'o.contactado_id.title'/> <span t-field = 'o.contactado_id.name' />, en el número telefónico <span t-field = 'o.telefono_contactado'/> el accidente ocurrió el día <span t-field = 'o.fecha_contactado'  t-options='{"format": "dd/MM/yyyy"}' /> siendo aproximadamente  <span t-field = 'o.fecha_contactado'  t-options='{"format": "HH:mm"}'/> horas, en la dirección: <span t-field = 'o.direccion_contactado'/>; momento en que transitaba en vía pública en calidad de <span t-field = 'o.calidad'/>, donde se involucra el vehículo de tipo  <span t-field ='o.vehiculo_id.name'/> de placas <span t-field ='o.placa'/> amparado bajo la póliza SOAT No.<span t-field ='o.poliza'/>, expedida por la aseguradora <span t-field = 'o.partner_id.name'/>.
+
+               <p>Por favor remitirse a observaciones</p> 
+            </td> 
+          </tr>
+        </t>
+        <t t-if='o.is_contactado == True and is_estandar !="trabajo_adelantado_cubierto" and is_estandar !="trabajo_adelantado_no_cubierto"'>
+
       <tr>
           <td class = "text-justify">     
                Conforme a la información que nos brinda la persona contactada <span t-field = 'o.contactado_id.title'/> <span t-field = 'o.contactado_id.name' />, en el número telefónico <span t-field = 'o.telefono_contactado'/> el accidente ocurrió el día <span t-field = 'o.fecha_contactado'  t-options='{"format": "dd/MM/yyyy"}' /> siendo aproximadamente  <span t-field = 'o.fecha_contactado'  t-options='{"format": "HH:mm"}'/> horas, en la dirección: <span t-field = 'o.direccion_contactado'/>; momento en que transitaba en vía pública en calidad de <span t-field = 'o.calidad'/>, donde se involucra el vehículo de tipo  <span t-field ='o.vehiculo_id.name'/> de placas <span t-field ='o.placa'/> amparado bajo la póliza SOAT No.<span t-field ='o.poliza'/>, expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, la persona resulta afectada cuando <span t-field = 'o.relato_lesionado'/> 
@@ -114,7 +135,7 @@
           </td>
         </tr>
         </t>
-          <t t-else=''>
+          <t t-elif='o.is_contactado == False and is_estandar =!"trabajo_adelantado_cubierto" and is_estandar =!"trabajo_adelantado_no_cubierto"'>
             <tr>
               <td class = "text-justify">
                 No se logra contacto con <span t-field = 'o.contactado_id.title'/> <span t-field = 'o.contactado_id.name'/> para confirmar el accidente ocurrido el día <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, momentos en que la persona afectada se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de placas  <span t-field ='o.placa'/>, amparada bajo la póliza SOAT No.<span t-field ='o.poliza'/> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>, y esclarecer como resulta afectado. 
@@ -258,9 +279,9 @@
      <t t-elif='o.is_estandar == "ocurrencia_no_confirmada"'>
         <tr>
         <td class = "text-justify">  
-        <p>No se logra verificar si los gastos de la IPS con razón social: <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />. Coinciden con la versión del paciente y si la entidad realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa.
+        <p>No se logra verificar si los gastos de la IPS con razón social: <span t-field = 'o.insurance_id.name'/>, reclama por la atención a este en la factura <b>No</b> <span t-field = 'o.factura' />, por el valor de $<span t-field = 'o.valor' />. Coinciden con la versión del paciente y si la entidad realizó al paciente los procedimientos por los cuales realiza la facturación brindada a la empresa.</p>
 
-         <p>Así mismo, no se confirmaron los hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó afectado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>.
+         <p>Así mismo, no se confirmaron los presuntos hechos ocurridos el día  <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó afectado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>.
           </p>
          </td>   
         </tr>      
@@ -268,14 +289,14 @@
      <t t-elif='o.is_estandar == "trabajo_adelantado_no_cubierto"'>
         <tr>
         <td class = "text-justify">  
-        <p>Según el cotejamiento de la información dada por la persona afectada: <span t-field = 'o.lesionado_id.name'/> quien recibió la atención de la IPS con razón social: <span t-field = 'o.insurance_id.name'/>. No se confirmaron los hechos ocurridos el día <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó afectado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>.          
+        Según el cotejamiento de la información dada por la persona afectada: <span t-field = 'o.lesionado_id.name'/> quien recibió la atención de la IPS con razón social: <span t-field = 'o.insurance_id.name'/>. No se confirmaron los presuntos hechos ocurridos el día <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó afectado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>.          
          </td>   
         </tr>      
       </t>
      <t t-elif='o.is_estandar == "trabajo_adelantado_cubierto"'>
         <tr>
         <td class = "text-justify">  
-        <p>Según el cotejamiento de la información dada por la persona afectada: <span t-field = 'o.lesionado_id.name'/> quien recibió la atención de la IPS con razón social: <span t-field = 'o.insurance_id.name'/>. Se confirmaron los hechos ocurridos el día <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó afectado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>.          
+        Según el cotejamiento de la información dada por la persona afectada: <span t-field = 'o.lesionado_id.name'/> quien recibió la atención de la IPS con razón social: <span t-field = 'o.insurance_id.name'/>. Se confirmaron los hechos ocurridos el día <span t-field = 'o.fecha_ips'  t-options='{"format": "dd/MM/yyyy"}'/>, donde resultó afectado <span t-field = 'o.lesionado_id.title'/> <span t-field = 'o.lesionado_id.name' /> que involucra el vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> de placas <span t-field = 'o.placa' /> amparado bajo la póliza SOAT <b>No.</b> <span t-field = 'o.poliza' /> expedida por la aseguradora <span t-field = 'o.partner_id.name'/>.          
          </td>   
         </tr>      
       </t>

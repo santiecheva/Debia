@@ -9,7 +9,7 @@
     		<attribute name="string">Nit</attribute>
     	</field>    	
 		<field name = 'vat' position = 'after'>	
-			<field name = 'entidad' widget = 'radio'/>
+			<field name = 'entidad'/>
 		</field>
 		<field name="vat" position="attributes">
     		<attribute name="invisible">1</attribute>

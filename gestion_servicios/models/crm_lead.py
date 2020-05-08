@@ -137,6 +137,8 @@ class CrmLead(models.Model):
 	radicado_cuerpo = fields.Char(string = 'Registro de Defunción')
 	activo_caso = fields.Selection([('activo','Activo'),('inactivo','Inactivo'),('archivado','Archivado')] ,string = 'Estado Fiscalía')
 	
+	fecha_expedicion_cc = fields.Date(string = 'Fecha de Expedición', help='FEcha de expedición de la cédula del lesionado')
+	ciudad_expedicion = fields.Char(string= 'Lugar de Expedición')
 
 	funeraria = fields.Char(string = 'Funeraria')
 
@@ -159,10 +161,10 @@ class CrmLead(models.Model):
 	is_estandar = fields.Selection([
 		('cubierto','Formato Cubierto'),
 		('cubierto_con_novedad','Formato Cubierto con Novedad'),
-		('no_cubierto','Formato no Cubierto'),
-		('ocurrencia_no_confirmada','Ocurrencia no confirmada'),
+		('no_cubierto','Formato No Cubierto'),
+		('ocurrencia_no_confirmada','Ocurrencia No confirmada'),
 		('trabajo_adelantado_cubierto','Trabajo Adelantado Cubierto'),
-		('trabajo_adelantado_no_cubierto','Trabajo Adelantado no Cubierto')], 
+		('trabajo_adelantado_no_cubierto','Trabajo Adelantado No Cubierto')], 
 		 string = 'Formato Analisis', default='cubierto')
 
 
