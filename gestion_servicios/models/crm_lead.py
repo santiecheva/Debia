@@ -125,7 +125,7 @@ class CrmLead(models.Model):
 
 	###### MORTALES #################
 	beneficiario_id = fields.Many2one('res.partner', string = 'Beneficiario Principal', domain = "[('entidad','=',False)]")
-	exequias = fields.Text(string = 'Exequias')
+	hechos = fields.Text(string = 'Hechos del Siniestro')
 	nunc = fields.Char(string = 'NUNC')
 	spoa = fields.Char(string = 'SPOA')
 	fiscalia = fields.Char(string = 'Fiscalía')
@@ -137,8 +137,8 @@ class CrmLead(models.Model):
 	radicado_cuerpo = fields.Char(string = 'Registro de Defunción')
 	activo_caso = fields.Selection([('activo','Activo'),('inactivo','Inactivo'),('archivado','Archivado')] ,string = 'Estado Fiscalía')
 	
-	fecha_expedicion_cc = fields.Date(string = 'Fecha de Expedición', help='FEcha de expedición de la cédula del lesionado')
-	ciudad_expedicion = fields.Char(string= 'Lugar de Expedición')
+	fecha_expedicion_cc = fields.Date(string = 'Fecha de Expedición', help='Fecha de expedición de la cédula del lesionado')
+	ciudad_expedicion = fields.Char(string= 'Lugar de Expedición Doc')
 
 	funeraria = fields.Char(string = 'Funeraria')
 
@@ -151,6 +151,13 @@ class CrmLead(models.Model):
 	direccion_fiscalia = fields.Char(string = 'Dirección Fiscalía')
 	telefono_fiscalia = fields.Char(string = 'Telefono Fiscalía')
 
+	department_id = fields.Many2one('res.country.state', string = 'Departamento Accidente')
+	ciudad_accidente_id = fields.Many2one('res.country.state.city', string = 'Ciudad Accidente')
+
+	marca = fields.Char(string = 'Marca')
+	linea = fields.Char(string = 'Línea')
+	modelo = fields.Char(string = 'Modelo')
+	color = fields.Char(string = 'Color')
 
 	objecion_id = fields.Many2one('maestro.objecion', string = 'Causal de Objeción')
 
