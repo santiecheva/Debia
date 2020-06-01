@@ -152,19 +152,12 @@ class CrmLead(models.Model):
 	telefono_fiscalia = fields.Char(string = 'Telefono Fiscalía')
 
 	department_id = fields.Many2one('res.country.state', string = 'Departamento Accidente')
-	
-	#cityacc_id = fields.Many2one('res.country.state.city', string = 'Ciudad Accidente')
-
-	#cityacci_id = fields.Many2one('res.country.state.city', string= 'Ciudad Accidente')
-
-	diligencia_no_conforme = fields.Text(string= 'Diligencias no Conformes')
+	#ciudad_accidente_id = fields.Many2one('res.country.state.city', string = 'Ciudad Accidente')
 
 	marca = fields.Char(string = 'Marca')
 	linea = fields.Char(string = 'Línea')
 	modelo = fields.Char(string = 'Modelo')
 	color = fields.Char(string = 'Color')
-
-	estado_cedula = fields.Char(string = 'Estado Cédula')
 
 	objecion_id = fields.Many2one('maestro.objecion', string = 'Causal de Objeción')
 

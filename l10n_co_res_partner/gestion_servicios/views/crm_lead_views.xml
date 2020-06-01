@@ -134,11 +134,6 @@
 
 				<h2 style='color:SlateBlue;'>Tratamiento</h2>
 				<field name = 'atencion'/>
-
-				<div attrs="{'invisible': [('is_estandar', '!=', 'trabajo_adelantado_no_cubierto')]}">
-				<h2 style='color:SlateBlue;'>Diligenia no conforme</h2>
-				<field name = 'diligencia_no_conforme'/>
-				</div>
 			</page>
 
 
@@ -168,7 +163,6 @@
 						<field name = 'spoa'/>	
 						<field name = 'fecha_inscripcion'  />
 						<field name = 'activo_caso'/>
-						<field name = 'estado_cedula' />
 						<!--<field name = 'numero_noticia'/>-->
 						<field name = 'cementerio'  />
 						<field name = 'pago'  />

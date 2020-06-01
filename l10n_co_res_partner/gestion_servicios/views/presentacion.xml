@@ -116,19 +116,11 @@
           <center>DILIGENCIAS</center>
         </th>
       </tr>
-        <t t-if="is_estandar =='trabajo_adelantado_cubierto'">
+        <t t-if="is_estandar =='trabajo_adelantado_cubierto' or is_estandar =='trabajo_adelantado_no_cubierto'">
           <tr>
             <td class = "text-justify">
                Conforme a la información que nos brinda la persona contactada <span t-field = 'o.contactado_id.title'/> <span t-field = 'o.contactado_id.name' />, en el número telefónico <span t-field = 'o.telefono_contactado'/> el accidente ocurrió el día <span t-field = 'o.fecha_contactado'  t-options='{"format": "dd/MM/yyyy"}' /> siendo aproximadamente  <span t-field = 'o.fecha_contactado'  t-options='{"format": "HH:mm"}'/> horas, en la dirección: <span t-field = 'o.direccion_contactado'/>; momento en que transitaba en vía pública en calidad de <span t-field = 'o.calidad'/>, donde se involucra el vehículo de tipo  <span t-field ='o.vehiculo_id.name'/> de placas <span t-field ='o.placa'/> amparado bajo la póliza SOAT No.<span t-field ='o.poliza'/>, expedida por la aseguradora <span t-field = 'o.partner_id.name'/>.
 
-               <p>Por favor remitirse a observaciones</p> 
-            </td> 
-          </tr>
-        </t>
-        <t t-if="is_estandar =='trabajo_adelantado_no_cubierto'">
-          <tr>
-            <td class = "text-justify">
-               Conforme a la información que nos brinda la persona contactada <span t-field = 'o.contactado_id.title'/> <span t-field = 'o.contactado_id.name' />, en el número telefónico <span t-field = 'o.telefono_contactado'/>
                <p>Por favor remitirse a observaciones</p> 
             </td> 
           </tr>
@@ -142,8 +134,6 @@
                Resulta (<span t-field = 'o.heridos'/>) persona(s) herida(s).
           </td>
         </tr>
-
-
         </t>
           <t t-elif="o.is_contactado == False and is_estandar !='trabajo_adelantado_cubierto' and is_estandar !='trabajo_adelantado_no_cubierto'">
             <tr>
@@ -352,9 +342,7 @@
     </div>
   </td>
 </table>
-
-
-</t>
+  </t>
 </t>
 </div>
 

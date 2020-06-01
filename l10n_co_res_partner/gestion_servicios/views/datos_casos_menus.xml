@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+
+<menuitem id='datos_cases_menu_root' name='Dats de casos' sequence='2'/>
+
+<menuitem id='tipos_casos_menu' name='Tipos de casos' sequence='2' parent='datos_cases_menu_root'/>
+<menuitem id='tipos_casos_submenu' name='Tipos de casos' sequence='3' parent='tipos_casos_menu' action = 'action_tipe_cases'/>
+
+<menuitem id='maestro_resultados_menu' name='Resultados' sequence='2' parent='datos_cases_menu_root'/>
+<menuitem id='maestro_resultados_submenu' name='Resultados' sequence='3' parent='maestro_resultados_menu' action = 'action_maestro_resultados'/>
+
+<menuitem id='maestro_traslados_menu' name='Traslados' sequence='2' parent='datos_cases_menu_root' />
+<menuitem id='maestro_traslados_submenu' name='Traslados' sequence='3' parent='maestro_traslados_menu' action='action_maestro_traslados'/>
+
+<menuitem id='tipo_vehiculo_menu' name='Vehículos' sequence='2' parent='datos_cases_menu_root'/>
+<menuitem id='tipo_vehiculo_submenu' name='Vehículos' sequence='3' parent='tipo_vehiculo_menu' action = 'action_tipo_vehiculo'/>
+
+
+</odoo>
