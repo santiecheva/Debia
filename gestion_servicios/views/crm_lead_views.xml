@@ -136,8 +136,8 @@
 				<field name = 'atencion'/>
 
 				<div attrs="{'invisible': [('is_estandar', '!=', 'trabajo_adelantado_no_cubierto')]}">
-				<h2 style='color:SlateBlue;'>Diligenia no conforme</h2>
-				<field name = 'diligencia_no_conforme'/>
+				<h2 style='color:SlateBlue;'>Diligencia no conforme</h2>
+				<field name = 'diligencia_no_conforme' help = "Es la redacción donde hubo no conformidades con la entrevista y se expresan de manera específica cuales fueron"/>
 				</div>
 			</page>
 
