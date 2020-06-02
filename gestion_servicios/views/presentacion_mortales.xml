@@ -268,7 +268,7 @@
         </tr>
         <tr>
         <td class= "text-justify"> 
-            Consultamos en los archivos de la Registraduría Nacional del Estado Civil y la cédula No. <span t-field = "o.lesionado_id.xidentification"/>, a nombre de <span t-field = "o.lesionado_id.name" /> se encuentra en estado <span t-field="o.estado_cedula" />, así: 
+            Consultamos en los archivos de la Registraduría Nacional del Estado Civil y la cédula No. <span t-field = "o.lesionado_id.xidentification"/>, a nombre de <span t-field = "o.lesionado_id.name" /> se encuentra en estado <!--<span t-field="o.estado_cedula" />-->, así: 
           </td>
           </tr>
           <tr>

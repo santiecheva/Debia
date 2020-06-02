@@ -21,6 +21,7 @@
         'views/res_partner_views.xml',
         'views/presentacion.xml',
         'views/entrevista_views.xml',
+        #'views/presentacion_mortales.xml',
 
 
         #'security/ir.model.access.csv',

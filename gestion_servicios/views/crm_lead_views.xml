@@ -168,8 +168,8 @@
 						<field name = 'spoa'/>	
 						<field name = 'fecha_inscripcion'  />
 						<field name = 'activo_caso'/>
-						<field name = 'estado_cedula' />
-						<!--<field name = 'numero_noticia'/>-->
+						<!--<field name = 'estado_cedula' />
+						<field name = 'numero_noticia'/>-->
 						<field name = 'cementerio'  />
 						<field name = 'pago'  />
 						<field name = 'fecha_expedicion_cc'  />

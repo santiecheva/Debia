@@ -164,7 +164,7 @@ class CrmLead(models.Model):
 	modelo = fields.Char(string = 'Modelo')
 	color = fields.Char(string = 'Color')
 
-	estado_cedula = fields.Char(string = 'Estado Cédula')
+	#estado_cedula = fields.Char(string = 'Estado Cédula')
 
 	objecion_id = fields.Many2one('maestro.objecion', string = 'Causal de Objeción')
 
