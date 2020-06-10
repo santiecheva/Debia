@@ -257,10 +257,10 @@
           </td>
           </tr>
           <tr>
-            <td><div class="thumbnail" >
+            <td><div class="img-fluid" alt="Responsive image" >
               <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                <t t-if = "attach.name.name == 'Registro de Prensa'">        
-                  <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)" style="width:150px;height:150px" />
+                <t t-if = "attach.name.name == 'Medicina legal'">        
+                  <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)" />
                 </t>
               </t>
             </div></td>
@@ -362,18 +362,19 @@
             <center>HECHOS</center>
           </th>
         </tr>
- <!--       <t t-if = "is_estandar =='trabajo_adelantado_cubierto' or is_estandar =='trabajo_adelantado_no_cubierto'" > -->
+        <t t-if = "is_estandar =='cubierto'" > 
        <tr>
           <td class= "text-justify">            
-            <p>Según se pudo confirmar la persona fallecida <span t-field ='o.lesionado_id.name' />, sufrió accidente de tránsito <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, en jurisdicción del municipio de <!--<span t-field = 'o.ciudad_accidente_id.name'/>--> en el departamento de <span t-field = 'o.department_id.name'/>.</p>
-             <p>La persona fallecida se movilizaba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de marca <span t-field = 'o.marca' />, linea <span t-field = 'o.linea'/>, de placas  <span t-field ='o.placa'/>, modelo <span t-field ='o.modelo'/>, de color <span t-field ='o.color'/> sucitándose las siguientes situaciones:</p> 
+            <p>Según datos registrados en los documentos aportados en la reclamación, la persona fallecida <span t-field ='o.lesionado_id.name' />, sufrió accidente de tránsito en la fecha <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, en jurisdicción del municipio de <!--<span t-field = 'o.ciudad_accidente_id.name'/>--> en el departamento de <span t-field = 'o.department_id.name'/>.</p>
+
+             <p>El occiso se econtraba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de marca <span t-field = 'o.marca' />, linea <span t-field = 'o.linea'/>, de placas  <span t-field ='o.placa'/>, modelo <span t-field ='o.modelo'/>, de color <span t-field ='o.color'/> sucitándose las siguientes situaciones:</p> 
              <p><span t-field = 'o.hechos'/></p>
               <p>Se genera número de SPOA <span t-field = 'o.spoa'/></p>
           </td>
         </tr> 
-   <!--    </t>
+      </t>
 
-   <t t-else = ''>    
+      <t t-if = "is_estandar =='cubierto_con_novedad'">    
         <tr>
           <td class= "text-justify">            
               <p>Según se pudo confirmar la persona fallecida <span t-field ='o.lesionado_id.name' />, sufrió accidente de tránsito <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, en jurisdicción del municipio de <span t-field = 'o.ciudad_accidente_id.name' /> en el departamento de <span t-field = 'o.department_id.name'/>.</p>
