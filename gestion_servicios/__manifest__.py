@@ -13,6 +13,8 @@
     'category': 'sales',
     'depends': [
         'crm',
+        'l10n_co_res_partner',
+        'documents_cases',
     ],
     "website": "https://epistementerprise.com/",
     "data": [
@@ -21,7 +23,7 @@
         'views/res_partner_views.xml',
         'views/presentacion.xml',
         'views/entrevista_views.xml',
-        #'views/presentacion_mortales.xml',
+        'views/presentacion_mortales.xml',
 
 
         #'security/ir.model.access.csv',
