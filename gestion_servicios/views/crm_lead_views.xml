@@ -174,7 +174,7 @@
 						<field name = 'pago'  />
 						<field name = 'fecha_expedicion_cc'  />
 						<field name = 'ciudad_expedicion'  widget = 'selection' />
-						<!--<field name = 'ciudad_accidente_id' widget = 'selection' />-->
+						<field name = 'cityacci_id' widget = 'selection' />
 						<field name = 'linea' />
 						<field name = 'color'  />
 

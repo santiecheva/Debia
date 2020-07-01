@@ -155,8 +155,9 @@ class CrmLead(models.Model):
 	
 	#cityacc_id = fields.Many2one('res.country.state.city', string = 'Ciudad Accidente')
 
-	#cityacci_id = fields.Many2one('res.country.state.city', string= 'Ciudad Accidente')
-
+	cityacci_id = fields.Many2one('res.country.state.city', string= 'Ciudad Accidente')
+	
+	
 	diligencia_no_conforme = fields.Text(string= 'Diligencias no Conformes')
 
 	marca = fields.Char(string = 'Marca')
@@ -202,7 +203,7 @@ class CrmLead(models.Model):
 	@api.constrains('stage_id')
 	def _check_stage(self):
 		if self.env.user == self.user_id:
-			if self.stage_id == 4:
+			if self.stage_id.id == 4:
 				raise exceptions.ValidationError('Por favor comuníquese con su coordinador para cerrar el caso')
 
 
