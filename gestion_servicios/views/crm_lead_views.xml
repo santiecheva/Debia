@@ -204,7 +204,7 @@
 					<field name = 'exequias'/>
 				</div>
 				<!--
-				<div>
+				<div> estoy haciendo un cambio
 				<h2 style='color:SlateBlue;'>Imágenes de Registros de Prensa</h2>
 				<field name = "imagen_prensa_ids" widget='one2many' >
 					<tree editable = 'bottom'>
