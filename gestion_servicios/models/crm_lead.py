@@ -125,47 +125,48 @@ class CrmLead(models.Model):
 
 	###### MORTALES #################
 	beneficiario_id = fields.Many2one('res.partner', string = 'Beneficiario Principal', domain = "[('entidad','=',False)]")
-	hechos = fields.Text(string = 'Hechos del Siniestro')
+	exequias = fields.Text(string = 'Exequias del Siniestro')
 	nunc = fields.Char(string = 'NUNC')
 	spoa = fields.Char(string = 'SPOA')
-	fiscalia = fields.Char(string = 'Fiscalía')
 	registro_defuncion = fields.Char(string = 'Registro Defunción')
 	notaria = fields.Char(string = 'Notaría') 
 
-	fecha_inscripcion = fields.Date(string = 'Fecha de Inscripción')
-	estado_cuerpo = fields.Char(string = 'Estado del cuerpo')
-	radicado_cuerpo = fields.Char(string = 'Registro de Defunción')
-	activo_caso = fields.Selection([('activo','Activo'),('inactivo','Inactivo'),('archivado','Archivado')] ,string = 'Estado Fiscalía')
+
 	
 	fecha_expedicion_cc = fields.Date(string = 'Fecha de Expedición', help='Fecha de expedición de la cédula del lesionado')
-	ciudad_expedicion = fields.Char(string= 'Lugar de Expedición Doc')
+	ciudad_expedicion_id = fields.Many2one('res.country.state.city', string= 'Lugar de Expedición Doc')# cambiar a many2one
 
+	# información de la velacion y el cuerpo
 	funeraria = fields.Char(string = 'Funeraria')
-
 	fecha_velacion = fields.Date(string = 'Fecha de Velación')
-	
 	cementerio = fields.Char(string = 'Cementerio')
 	pago = fields.Selection([('no_pago','Sin pago'),('pago','Pago')], string='Estado de Pago')
-	
+	fecha_inscripcion = fields.Date(string = 'Fecha de Inscripción')
+	estado_cuerpo = fields.Char(string = 'Estado del cuerpo')
+	radicado_cuerpo = fields.Char(string = 'Radicado del cuerpo')
+	activo_caso = fields.Selection([('activo','Activo'),('inactivo','Inactivo'),('archivado','Archivado')] ,string = 'Estado Fiscalía')
+
+	# campos de fiscalía
 	numero_noticia = fields.Char(string = 'Número de Noticia')
 	direccion_fiscalia = fields.Char(string = 'Dirección Fiscalía')
 	telefono_fiscalia = fields.Char(string = 'Telefono Fiscalía')
+	fiscalia = fields.Char(string = 'Fiscalía')
+
 
 	department_id = fields.Many2one('res.country.state', string = 'Departamento Accidente')
 	
-	#cityacc_id = fields.Many2one('res.country.state.city', string = 'Ciudad Accidente')
-
 	cityacci_id = fields.Many2one('res.country.state.city', string= 'Ciudad Accidente')
-	
-	
+
 	diligencia_no_conforme = fields.Text(string= 'Diligencias no Conformes')
 
+	#info del vehiculo del accidente
 	marca = fields.Char(string = 'Marca')
 	linea = fields.Char(string = 'Línea')
 	modelo = fields.Char(string = 'Modelo')
 	color = fields.Char(string = 'Color')
+	########################################
 
-	#estado_cedula = fields.Char(string = 'Estado Cédula')
+	estado_cedula = fields.Char(string = 'Estado Cédula')
 
 	objecion_id = fields.Many2one('maestro.objecion', string = 'Causal de Objeción')
 
@@ -181,6 +182,83 @@ class CrmLead(models.Model):
 		('trabajo_adelantado_cubierto','Trabajo Adelantado Cubierto'),
 		('trabajo_adelantado_no_cubierto','Trabajo Adelantado No Cubierto')], 
 		 string = 'Formato Analisis', default='cubierto')
+
+	
+	
+	#tratamiento de adjuntos
+	
+	
+	imagen_victima_ids = fields.Many2many(
+		'res.documents',
+		'victima_imagen_rel',
+		'lead_id',
+		'image_id',
+		string='Imágenes de la víctima'
+	
+	)
+
+	imagen_vehiculo_ids = fields.Many2many(
+		'res.documents',
+		'vehiculo_imagen_rel',
+		'lead_id',
+		'vehiculo_id',
+		string='Imágenes del Vehículo'
+	
+	)
+
+	imagen_lugar_ids = fields.Many2many(
+		'res.documents',
+		'lugar_hechos_imagen_rel',
+		'lead_id',
+		'lugar_hechos_id',
+		string='Imágenes del Lugar de los Hechos'	
+	)
+
+	"""
+	imagen_prensa_ids = fields.Many2many(
+		'res.documents',
+		'lugar_prensa_imagen_rel',
+		'opor_id',
+		'prensa_id',
+		string='Registros de Prensa'	
+	)
+	"""
+
+	imagen_ruaf_ids = fields.Many2many(
+		'res.documents',
+		'lugar_ruaf_imagen_rel',
+		'lead_id',
+		'lugar_ruaf_id',
+		string='Registros de Prensa'	
+	)
+
+	poliza_bin = fields.Binary(
+		string='Imagen de Vigencia Póliza'
+	)
+
+	tecnico_mecanica_bin = fields.Binary(
+	string='Imagen Técnico Mecánica'
+	)
+	
+	runt_bin = fields.Binary(
+		string = 'Imagen RUNT'
+	)
+
+	consulta_autoridades_bin = fields.Binary(
+		string = 'Imagen Consulta Autoridades'
+		)
+
+	medicina_legal_bin = fields.Binary(
+		string='Imagen Medicina Legal'
+	)
+	
+	imagen_estado_cedula_bin = fields.Binary(
+		string='Imagen Estado Cédula'
+	)
+
+	imagen_matrimonio_bin = fields.Binary(
+		string='Imagen Registro de Matrimonio'
+	)
 
 
 

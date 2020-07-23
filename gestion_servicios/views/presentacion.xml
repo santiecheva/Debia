@@ -323,7 +323,7 @@
       </th>
     </tr>
     <tr>
-      <td>  
+      <td class = "text-justify">  
         <span t-field = 'o.observaciones' />
       </td>
     </tr>

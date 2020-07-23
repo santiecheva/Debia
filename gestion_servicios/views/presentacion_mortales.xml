@@ -80,7 +80,7 @@
             </tr>
             <tr> 
               <td class = 'text-justify'>
-              Solicitud para adelantar las labores necesarias de investigación de reclamación por muerte de la persona: <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' />, quien en vida se identificaba con el documento de tipo <span t-field = 'o.doctype'/>  Nro <span t-field = 'o.lesionado_id.xidentification'/> expedido en la fecha <span t-field = 'o.fecha_expedicion_cc' t-options='{"format": "dd/MM/yyyy"}'/> en <span t-field = 'o.ciudad_expedicion'/>, con el presente informe les damos a conocer el resultado de las diligencias realizadas. 
+              Solicitud para adelantar las labores necesarias de investigación de reclamación por muerte de la persona: <span t-field = 'o.lesionado_id.title' /> <span t-field = 'o.lesionado_id.name' />, quien en vida se identificaba con el documento de tipo <span t-field = 'o.doctype'/>  Nro <span t-field = 'o.lesionado_id.xidentification'/> expedido en la fecha <span t-field = 'o.fecha_expedicion_cc' t-options='{"format": "dd/MM/yyyy"}'/> en <span t-field = 'o.ciudad_expedicion_id.name'/>, con el presente informe les damos a conocer el resultado de las diligencias realizadas. 
               </td>
             </tr>
           </table>
@@ -95,62 +95,61 @@
                 El vehículo involucrado es del tipo <span t-field = 'o.vehiculo_id.name'/> de la marca <span t-field='o.marca' /> con línea <span t-field = 'o.linea'/> modelo <span t-field='o.modelo' /> de placa <span t-field = 'o.placa' /> se ampara por la póliza SOAT <span t-field = 'o.poliza' /> expedida por la aseguradora de razón social <span t-field = 'o.partner_id.name' /> consultada en el RUNT, con propiedad de  <span t-field = 'o.propietario_id.title' /> <span t-field='o.propietario_id.name' /> con tipo de identidicación <span t-field = 'o.doctype' /> con número <span t-field='o.lesionado_id.xidentification'/>. 
               </td>
             </tr>
-          <tr>
-            <td><div class="img-fluid" alt="Responsive image">
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                <t t-if = "attach.name.name =='Vehiculo involucrado'">        
-                  <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
-                </t>
-              </t>
-            </div></td>
-          </tr>            
+             <t t-foreach = 'o.imagen_vehiculo_ids' t-as = 'vehiculo'>
+                  <tr>
+                      <td>
+                        <div class="container-fluid">
+                          <img t-att-src="'data:image/png;base64,%s' % to_text(vehiculo.image_bin)" style="width:1000px;height:300px"/>
+                        </div>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td><span t-field='vehiculo.description' /></td>
+                  </tr>
+                </t>         
           </table>
 
           <table class = 'table'>
             <tr>
              <th colspan="3" class = "table-active">
                 <center>LUGAR DE LOS HECHOS</center>
-              </th>
-            </tr>
-          <tr>
-            <td>
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                  <tr>
+             </th>
+            </tr>          
+             <t t-foreach = 'o.imagen_lugar_ids' t-as = 'lugar_hechos'>
+                <tr>
                     <td>
-                    <t t-if = "attach.name.name=='Fotografía del lugar de los hechos'">
                       <div class="container-fluid">
-                          <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)" style="width:1000px;height:300px"/>
+                        <img t-att-src="'data:image/png;base64,%s' % to_text(lugar_hechos.image_bin)" style="width:1000px;height:300px"/>
                       </div>
-                    </t>
                     </td>
-                  </tr>
-                </t>
-            </td>
-          </tr>            
-          </table>
+                </tr>
+                <tr>
+                  <td><span t-field='lugar_hechos.description' /></td>
+                </tr>
+              </t> 
+            </table>
 
   
      <table class = 'table'>
         <tr>
           <th colspan="3" class = "table-active">
-            <center>PÓLIZA</center>
+            <center>VIGENCIA PÓLIZA</center>
           </th>
         </tr>
         <tr>
           <td class = "text-justify">  
-              La póliza SOAT No.  <span t-field = 'o.poliza' /> presentó vigencia desde el día <span t-field = 'o.vigencia_poliza_desde' t-options='{"format": "dd/MM/yyyy"}'/> hasta el día <span t-field = 'o.vigencia_poliza_hasta' t-options='{"format": "dd/MM/yyyy"}' />
-
+              La póliza SOAT No.  <span t-field = 'o.poliza' /> presentó vigencia desde el día <span t-field = 'o.vigencia_poliza_desde' t-options='{"format": "dd/MM/yyyy"}'/> hasta el día <span t-field = 'o.vigencia_poliza_hasta' t-options='{"format": "dd/MM/yyyy"}'/> como se muestra a continuación:
           </td>
         </tr>
+
         <tr>
-          <td><div class="img-fluid" alt="Responsive image">
-            <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-             <t t-if = "attach.name.name == 'Vigencia de la póliza del SOAT'">        
-                <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
-              </t>
-            </t>
-          </div></td>
-        </tr>    
+          <td>
+            <div class="img-fluid" alt="Responsive image">
+              <img t-att-src="'data:image/png;base64,%s' % to_text(o.poliza_bin)"/>
+            </div>         
+          </td>
+        </tr>
+
       </table>
 
      <table class = 'table'>
@@ -164,16 +163,18 @@
               El vehículo de tipo <span t-field = 'o.vehiculo_id.name' /> con <span t-field = 'o.placa' /> presenta la siguiente información con respecto a la revisióno técnico mecánica.
           </td>
         </tr>
-        <tr>
-          <td><div class="img-fluid" alt="Responsive image">
-            <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-             <t t-if = "attach.name.name == 'ponertecnicomecánica'">        
-                <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
-              </t>
-            </t>
-          </div></td>
-        </tr>    
+        
+          <div class="img-fluid" alt="Responsive image">
+ 
+              <tr>
+                <td>       
+                  <img t-att-src="'data:image/png;base64,%s' % to_text(o.tecnico_mecanica_bin)"/>
+                </td>
+              </tr>
+
+          </div>
       </table>
+
       <table class = 'table'>
         <tr>
           <th colspan="3" class="bg-danger">
@@ -185,16 +186,17 @@
             <b>Buscamos en la página del RUNT el índice de accidentalidad del vehículo involucrado y el vehículo de placas <span t-field = 'o.placa' /> Así. </b>
           </td>
           </tr>
-          <tr>
-            <td><div class="img-fluid" alt="Responsive image">
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                <t t-if = "attach.name.name == 'Accidentalidad en el Runt'">        
-                  <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
-                </t>
-              </t>
-            </div></td>
-          </tr>
+          <div class="img-fluid" alt="Responsive image">
+
+                <tr>
+                  <td>        
+                    <img t-att-src="'data:image/png;base64,%s' % to_text(o.runt_bin)"/>
+                  </td>
+                </tr>
+
+            </div>          
         </table>
+
         <table class = 'table'>
         <tr>
           <th colspan="3" class="table-active">
@@ -205,22 +207,19 @@
             <td class= "text-justify"> 
             <b> La persona fallecida es <span t-field='o.lesionado_id.title' /> <span t-field='o.lesionado_id.name' />, quien en vida se identificaba con la cédula de Ciudadanía Número <span t-field ='o.lesionado_id.xidentification'/>, Expedida <span t-field='o.fecha_expedicion_cc'/>, en  <span t-field='o.cityacci_id'/> nacido el <span t-field = "o.lesionado_id.xbirthday"/>, en   <span t-field='o.telefono_contactado'/>, según ficha anexa:  </b>
             </td>
-          </tr>
-            <tr>
-            <td>
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
+            </tr>
+             <t t-foreach = 'o.imagen_victima_ids' t-as = 'victima'>
                   <tr>
-                    <t t-if = "attach.name.name=='resgistros de prensa'">
                       <td>
-                      <div class="container-fluid">
-                          <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)" style="width:1000px;height:300px"/>
+                        <div class="container-fluid">
+                          <img t-att-src="'data:image/png;base64,%s' % to_text(victima.image_bin)" style="width:1000px;height:300px"/>
                       </div></td>
-                      <td><span t-field='attach.description' /></td>
-                    </t>
-                  </tr>
-                </t>
-            </td>
-          </tr>    
+                      </tr>
+                      <tr>
+                        <td><span t-field='victima.description' /></td>
+                      </tr>
+                </t> 
+
         </table>    
 
         <table class = 'table'>
@@ -234,19 +233,23 @@
             <b>Se adjuntan los resgistros de prensa</b>
           </td>
           </tr>
-          <tr>
-            <td>
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                  <tr>
-                    <t t-if = "attach.name.name=='resgistros de prensa'">
-                      <div class="container-fluid">
-                          <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)" style="width:1000px;height:300px"/>
-                      </div>
-                    </t>
-                  </tr>
-                </t>
-            </td>
-          </tr>    
+            <!--
+              <t t-foreach = 'o.imagen_prensa_ids' t-as = 'prensa'>
+                <tr>
+                  <td>
+                    <div class="container-fluid">
+                      <img t-att-src="'data:image/png;base64,%s' % to_text(prensa.image_bin)" style="width:1000px;height:300px"/>
+                    </div>
+                  </td>
+                </tr> 
+                <tr>
+                  <td>
+                    <span t-field="prensa.description" />
+                    
+                  </td>
+              </tr>  
+              </t>
+              --> 
           </table>
 
         <table class = 'table'>
@@ -257,19 +260,26 @@
         </tr>
         <tr>
         <td class= "text-justify"> 
-            <b>En el procesamiento por la persona fallecida <span t-field='o.lesionado_id.title' /> <span t-field='o.lesionado_id.name' />, Fue consultado en el Sistema de la Fiscalía General de la Nación, le correspondió el NUNC <span t-field ='o.spoa' />, asignado a la <span t-field='o.fiscalia'/>, la cual se encuentra ubicada en  <span t-field='o.direccion_fiscalia'/> y cuyo teléfono de contacto es  <span t-field='o.telefono_fiscalia'/>, según ficha anexa:  </b>
+            En el procesamiento por la persona fallecida <span t-field='o.lesionado_id.title' /> <span t-field='o.lesionado_id.name' />, Fue consultado en el Sistema de la Fiscalía General de la Nación, le correspondió el NUNC <span t-field ='o.spoa' />, asignado a la <span t-field='o.fiscalia'/>, la cual se encuentra ubicada en  <span t-field='o.direccion_fiscalia'/> y cuyo teléfono de contacto es  <span t-field='o.telefono_fiscalia'/>, según ficha anexa:  
           </td>
           </tr>
-          <tr>
-            <td><div class="img-fluid" alt="Responsive image">
+            <div class="img-fluid" alt="Responsive image">
               <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                <t t-if = "attach.name.name == 'consulta autoridades'">        
-                  <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
-                  <span t-field ='attach.description' />
+                <t t-if = "attach.name.name == 'consulta autoridades'">
+                  <tr> 
+                    <td>       
+                     <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
+                   </td>
+                 </tr>
+                 <tr>
+                  <td>
+                    <span t-field ='attach.description' />
+                  </td>
+                </tr>
                 </t>
               </t>
-            </div></td>
-          </tr>
+            </div>
+          
         </table>
 
         <table class = 'table'>
@@ -280,17 +290,15 @@
         </tr>
         <tr>
         <td class= "text-justify"> 
-            Se consulta en la página web del instituto de medicina legal, donde aparece que el estado fue <span t-field = "o.estado_cuerpo"/>, con radicado No. <span t-field = "o.radicado_cuerpo" /> a quién en vida respondía el nombre de 
+            Se consulta en la página web del instituto de medicina legal, donde aparece que el estado fue <span t-field = "o.estado_cuerpo"/>, con radicado No. <span t-field = "o.radicado_cuerpo" /> a quién en vida respondía el nombre de <span t-field = "o.lesionado_id.name" />
           </td>
           </tr>
           <tr>
-            <td><div class="img-fluid" alt="Responsive image" >
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                <t t-if = "attach.name.name == 'Medicina legal'">        
-                  <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)" />
-                </t>
-              </t>
-            </div></td>
+            <td>
+              <div class="img-fluid" alt="Responsive image" >      
+                <img t-att-src="'data:image/png;base64,%s' % to_text(o.medicina_legal_bin)" />
+              </div>
+            </td>
           </tr>
           <tr>
             <td>Se registra el certificado de defunción de la persona fallecida  <span t-field='o.lesionado_id.title' /> <span t-field='o.lesionado_id.name' />, bajo el registro civil de defunción No. <span t-field='o.registro_defuncion'/> con fecha de inscripción ante la notaría <span t-field='o.notaria' /> del día <span t-field='o.fecha_inscripcion' />.</td> 
@@ -304,17 +312,14 @@
         </tr>
         <tr>
         <td class= "text-justify"> 
-            Consultamos en los archivos de la Registraduría Nacional del Estado Civil y la cédula No. <span t-field = "o.lesionado_id.xidentification"/>, a nombre de <span t-field = "o.lesionado_id.name" /> se encuentra en estado <!--<span t-field="o.estado_cedula" />-->, así: 
+            Consultamos en los archivos de la Registraduría Nacional del Estado Civil y la cédula No. <span t-field = "o.lesionado_id.xidentification"/>, a nombre de <span t-field = "o.lesionado_id.name" /> se encuentra en estado <span t-field="o.estado_cedula" />, así: 
           </td>
           </tr>
           <tr>
-            <td><div class="img-fluid" alt="Responsive image">
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                <t t-if = "attach.name.name == 'Estado de cedula'">        
-                  <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
-                </t>
-              </t>
-            </div></td>
+            <td><div class="img-fluid" alt="Responsive image">    
+                  <img t-att-src="'data:image/png;base64,%s' % to_text(o.imagen_estado_cedula_bin)"/>
+             </div>
+            </td>
           </tr>
         </table>
         <table class = 'table'>
@@ -328,15 +333,14 @@
             Consultamos en la página de la Registraduría Nacional del Estado Civil, el Registro Civil de Matrimonio de la persona afectada <span t-field = "o.lesionado_id.title" /> <span t-field = "o.lesionado_id.name" />, arrojando los siguientes datos: 
           </td>
           </tr>
-          <tr>
-            <td><div class="img-fluid" alt="Responsive image">
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                <t t-if = "attach.name.name == 'Registro civil de matrimonio'">        
-                  <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
-                </t>
-              </t>
-            </div></td>
-          </tr>
+          <div class="img-fluid" alt="Responsive image">  
+              <tr>
+                <td>  
+                  <img t-att-src="'data:image/png;base64,%s' % to_text(o.imagen_matrimonio_bin)"/>
+                </td>
+              </tr>
+  
+            </div>
         </table>
 
         <table class = 'table'>
@@ -352,10 +356,8 @@
           </tr>
           <tr>
             <td><div class="img-fluid" alt="Responsive image">
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                <t t-if = "attach.name.name == 'RUAF'">        
-                  <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)"/>
-                </t>
+              <t t-foreach = 'o.imagen_ruaf_ids' t-as = 'ruaf'>    
+                  <img t-att-src="'data:image/png;base64,%s' % to_text(ruaf.image_bin)"/>           
               </t>
             </div></td>
           </tr>
@@ -367,32 +369,35 @@
             <center>NUCLEO FAMILIAR</center>
           </th>
           </tr>
-            <tr>
-            <td>
-              <t t-foreach = 'o.attach_ids' t-as = 'attach'>
-                  <tr>
-                    <t t-if = "attach.name.name=='Familiar'">
-                      <td>
+            <t t-foreach = 'o.attach_ids' t-as = 'attach'>
+              <t t-if = "attach.name.name=='Familiar'">
+                <tr>
+                    <td>
                       <div class="container-fluid">
-                          <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)" style="width:1000px;height:300px"/>
-                      </div></td>
-                      <td><span t-field='attach.description' /></td>
-                    </t>
-                  </tr>
-                </t>
-            </td>
-          </tr>    
-        </table>        
+                        <img t-att-src="'data:image/png;base64,%s' % to_text(attach.image_bin)" style="width:1000px;height:300px"/>
+                      </div>
+                    </td>
+                </tr> 
+                <tr>   
+                    <td>
+                      <span t-field='attach.description' />
+                    </td>
+                </tr>
+                
+              </t>
+            </t>               
+        </table>
+
        <table class = 'table'>
-             <tr>
+        <tr>
           <th colspan="3" class = "table-active">
             <center>HECHOS</center>
           </th>
         </tr>
-        <t t-if = "is_estandar =='cubierto'" > 
+        <t t-if = "o.is_estandar =='cubierto'" > 
        <tr>
           <td class= "text-justify">            
-            <p>Según datos registrados en los documentos aportados en la reclamación, la persona fallecida <span t-field ='o.lesionado_id.name' />, sufrió accidente de tránsito en la fecha <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, en jurisdicción del municipio de <!--<span t-field = 'o.ciudad_accidente_id.name'/>--> en el departamento de <span t-field = 'o.department_id.name'/>.</p>
+            <p>Según datos registrados en los documentos aportados en la reclamación, la persona fallecida <span t-field ='o.lesionado_id.name' />, sufrió accidente de tránsito en la fecha <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, en jurisdicción del municipio de <span t-field = 'o.cityacci_id.name'/> en el departamento de <span t-field = 'o.department_id.name'/>.</p>
 
              <p>El occiso se econtraba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de marca <span t-field = 'o.marca' />, linea <span t-field = 'o.linea'/>, de placas  <span t-field ='o.placa'/>, modelo <span t-field ='o.modelo'/>, de color <span t-field ='o.color'/> sucitándose las siguientes situaciones:</p> 
              <p><span t-field = 'o.hechos'/></p>
@@ -401,10 +406,10 @@
         </tr> 
       </t>
 
-      <t t-if = "is_estandar =='cubierto_con_novedad'">    
+      <t t-if = "o.is_estandar =='cubierto_con_novedad'">    
         <tr>
           <td class= "text-justify">            
-            <p>Según datos registrados en los documentos aportados en la reclamación, la persona fallecida <span t-field ='o.lesionado_id.name' />, sufrió accidente de tránsito en la fecha <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, en jurisdicción del municipio de <!--<span t-field = 'o.ciudad_accidente_id.name'/>--> en el departamento de <span t-field = 'o.department_id.name'/>.</p>
+            <p>Según datos registrados en los documentos aportados en la reclamación, la persona fallecida <span t-field ='o.lesionado_id.name' />, sufrió accidente de tránsito en la fecha <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, en jurisdicción del municipio de <span t-field = 'o.cityacci_id.name'/> en el departamento de <span t-field = 'o.department_id.name'/>.</p>
 
              <p>El occiso se econtraba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de marca <span t-field = 'o.marca' />, linea <span t-field = 'o.linea'/>, de placas  <span t-field ='o.placa'/>, modelo <span t-field ='o.modelo'/>, de color <span t-field ='o.color'/> sucitándose las siguientes situaciones:</p> 
              <p><span t-field = 'o.hechos'/></p>
@@ -415,7 +420,7 @@
       <t t-if = "is_estandar =='no_cubierto'">    
         <tr>
           <td class= "text-justify">            
-            <p>Según datos registrados en los documentos aportados en la reclamación, la persona fallecida <span t-field ='o.lesionado_id.name' />, sufrió accidente de tránsito en la fecha <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, en jurisdicción del municipio de <!--<span t-field = 'o.ciudad_accidente_id.name'/>--> en el departamento de <span t-field = 'o.department_id.name'/>.</p>
+            <p>Según datos registrados en los documentos aportados en la reclamación, la persona fallecida <span t-field ='o.lesionado_id.name' />, sufrió accidente de tránsito en la fecha <span t-field = 'o.fecha_ips' t-options='{"format": "dd/MM/yyyy"}'/>, siendo aproximadamente las <span t-field = "o.fecha_ips" t-options='{"format": "HH:mm"}'/> horas, en la dirección <span t-field = 'o.direccion_ips'/>, en jurisdicción del municipio de <span t-field = 'o.cityacci_id.name'/> en el departamento de <span t-field = 'o.department_id.name'/>.</p>
 
              <p>El occiso se econtraba en calidad de <span t-field ='o.calidad'/>, donde se involucra el vehículo de tipo <span t-field ='o.vehiculo_id.name'/> de marca <span t-field = 'o.marca' />, linea <span t-field = 'o.linea'/>, de placas  <span t-field ='o.placa'/>, modelo <span t-field ='o.modelo'/>, de color <span t-field ='o.color'/> sucitándose las siguientes situaciones:</p> 
              <p><span t-field = 'o.hechos'/></p>
@@ -424,6 +429,19 @@
         </tr> 
       </t>
       </table>           
+
+  <table class = 'table'>
+    <tr>
+      <th colspan="3" class = "table-active">
+        <center>EXEQUIAS</center>
+      </th>
+    </tr>
+    <tr>
+      <td class = "text-justify">  
+        <span t-field = 'o.exequias' />
+      </td>
+    </tr>
+  </table>
 
       <table class = 'table'>
         <tr>
